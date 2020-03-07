@@ -16,6 +16,33 @@ void	ft_putchar(char s)
 {
 	write(1, &s, 1);
 }
+int		ft_atoi(const char *nptr)
+{
+	int i;
+	int sign;
+	int nb;
+
+	sign = 1;
+	nb = 0;
+	i = 0;
+	while (nptr[i] == '\n' || nptr[i] == '\t' || nptr[i] == '\v' ||
+		nptr[i] == '\f' || nptr[i] == '\r' || nptr[i] == ' ')
+	{
+		i++;
+	}
+	if (nptr[i] == '+' || nptr[i] == '-')
+	{
+		if (nptr[i] == '-')
+			sign = sign * -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		nb = nb * 10 + nptr[i] - '0';
+		i++;
+	}
+	return (nb * sign);
+}
 
 void	ft_int(int n)
 {
@@ -54,8 +81,11 @@ int		ft_printf(const char *s, ...)
 {
 	va_list list;
 	int i;
+	int c;
+	char *tmp;
 
 	i = 0;
+	c = 0;
 	va_start(list, s);
 	while (s[i] != '\0')
 	{
@@ -71,12 +101,39 @@ int		ft_printf(const char *s, ...)
 		{
 			if (s[i + 1] == 'x')
 			{
-				ft_itoa_base(va_arg(list, int));
+				ft_itoa_base_min(va_arg(list, int));
 				i = i + 2;
 			}
 		}
 		if (s[i] == '%' && s[i + 1] != '%')
 		{
+			if (s[i + 1] == 'X')
+			{
+				ft_itoa_base_maj(va_arg(list, int));
+				i = i + 2;
+			}
+		}
+		if (s[i] == '%' && s[i + 1] != '%')
+		{
+			if (s[i + 1] == '0')
+			{
+				i++;
+				if (s[i + 1] >= '0' && s[i + 1] <= '9')
+				{
+					while (s[i + 1] >= '0' && s[i + 1] <= '9')
+					{
+						tmp[c] = s[i + 1];
+						i++;
+						c++;
+					}
+					ft_atoi(tmp);
+				}
+			}
+			if (s[i + 1] == 'c')
+			{
+				ft_character(va_arg(list, int));
+				i = i + 2;
+			}
 			if (s[i + 1] == 'c')
 			{
 				ft_character(va_arg(list, int));
@@ -85,7 +142,7 @@ int		ft_printf(const char *s, ...)
 		}
 		if (s[i] == '%' && s[i + 1] != '%')
 		{
-			if (s[i + 1] == 'd')
+			if (s[i + 1] == 'd' || s[i + 1] == 'i' )
 			{
 				ft_int(va_arg(list, int));
 				i = i + 2;
@@ -106,5 +163,6 @@ int main()
 {
 	int b = 123;
 	int c = 123;
-	ft_printf("salut %s mahrez j'ai %x an%c", "je m'appel", 2596, 's');
+	ft_printf("j'ai %d ans\n", 19);
+	printf("j'ai %8.*d ans", 1, 19);
 }

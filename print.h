@@ -9,11 +9,12 @@
 
 void			ft_putchar(char s);
 void			ft_int(int n);
-void			ft_character(char s);
 void			ft_chaine(char *s);
 int				ft_printf(const char *s, ...);
-static int		ft_count(int n);
-char			*ft_itoa_base(int n);
+int				ft_count(int n);
+char			*ft_itoa_base_min(int n);
+char			*ft_itoa_base_maj(int n);
 char			*ft_write_itoa(char *s);
+char			*ft_strrev(char *str);
 
 #endif
