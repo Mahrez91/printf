@@ -1,6 +1,6 @@
 #include "print.h"
 
-char		*ft_itoa_base_maj(int n)
+char		*ft_itoa_base_maj(unsigned int n)
 {
 	char *alpha;
 	char *str;
@@ -14,6 +14,10 @@ char		*ft_itoa_base_maj(int n)
 	{
 		str[i] = '0';
 		return (ft_write_itoa(str));
+	}
+	if (n < 0)
+	{
+		n = 4294967296 - (-1 * n);
 	}
 	while (n > 0)
 	{

@@ -32,6 +32,42 @@ int		ft_atoi(const char *nptr)
 	return (nb * sign);
 }
 
+void	ft_int(int n)
+{
+	unsigned int i;
+
+	if (n < 0)
+	{
+		ft_putchar('-');
+		i = n * -1;
+	}
+	else
+		i = n;
+	if (i >= 10)
+		ft_int(i / 10);
+	ft_putchar(i % 10 + 48);
+}
+
+void	ft_int_pos(unsigned int n)
+{
+	unsigned int i;
+
+	if (n < 0)
+	{
+		i = 4294967296 - (-1 * n);
+	}
+	else
+		i = n;
+	if (i >= 10)
+		ft_int(i / 10);
+	ft_putchar(i % 10 + 48);
+}
+
+void	ft_character(char s)
+{
+	write(1, &s, 1);
+}
+
 void	ft_chaine(char *s)
 {
 	int i;
@@ -49,49 +85,33 @@ int		ft_printf(const char *s, ...)
 	va_list list;
 	int i;
 	int c;
-	int a;
-	char tmp[10];
+	const char *tmp = NULL;
+
 
 	i = 0;
 	c = 0;
-	a = 0;
 	va_start(list, s);
 	while (s[i] != '\0')
 	{
 		if (s[i] == '%' && s[i + 1] != '%')
 		{
-			if (s[i + 1] == '-')
+			if (s[i + 1] == '0')
 			{
+				if (s[i + 1] <= '1' || s[i + 1] >= '9')
+				{
+					tmp[c] = s[i + 1];
+					c++;
+				}
 				i++;
-				if (s[i + 1] >= '0' && s[i + 1] <= '9')
-				{
-					while (s[i + 1] >= '0' && s[i + 1] <= '9')
-					{
-						tmp[c] = s[i + 1];
-						i++;
-						c++;
-					}
-					tmp[c] = '\0';
-					a = ft_atoi(tmp) - 1;
-					printf("%d\n", a);
-				}
 			}
-			if (s[i + 1] == 'c' && a != 0)
+			ft_atoi(tmp);	
+			if (s[i + 1] == 'd' || s[i + 1] == 'i' )
 			{
-				ft_putchar(va_arg(list, int));
-				while (a != 0)
-				{
-					ft_putchar(' ');
-					a--;
-				}
-				i = i + 2;
-			}
-			if (s[i + 1] == 'c' && a == 0)
-			{
-				ft_putchar(va_arg(list, int));
+				ft_int(va_arg(list, int));
 				i = i + 2;
 			}
 		}
+	
 		if (s[i] != '\0')
 		{
 			write(1, &s[i], 1);
@@ -99,11 +119,12 @@ int		ft_printf(const char *s, ...)
 		}	
 	}
 	va_end(list);
+	printf("\n");
 	return (0);
 }
 
 int main()
 {
-	ft_printf("%-85cc|\n", 'a');
-	printf("%-85cc|", 'a');
+	ft_printf("j'ai %d ans\n", 25);
+	printf("j'ai %000000056d OK ", 25);
 }
