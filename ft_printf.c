@@ -192,6 +192,8 @@ int		ft_printf(const char *s, ...)
 
 int main()
 {
-	ft_printf("j'ai %d %s\n", 25, "ans");
-	printf("j'ai %0*d %s OK ", 5, 25, "ans");
+	int *ptr = 0;
+	int *ptr2 = 0;
+	ft_printf("j'ai %p %c\n", &ptr, 'a');
+	printf("j'ai %p %c", &ptr2, 'a');
 }
