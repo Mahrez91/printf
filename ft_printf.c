@@ -44,20 +44,34 @@ int		ft_atoi(const char *nptr)
 	return (nb * sign);
 }
 
-void	ft_int(int n)
+int		ft_int(int n)
 {
 	unsigned int i;
+	static int count;
+	int sign;
 
+	sign = 0;
+	count = 0;
 	if (n < 0)
 	{
 		ft_putchar('-');
 		i = n * -1;
+		sign++;
 	}
 	else
 		i = n;
 	if (i >= 10)
 		ft_int(i / 10);
+	count++;
 	ft_putchar(i % 10 + 48);
+	if (sign == 0)
+	{
+		return (count);
+	}
+	else
+	{
+		return (count + 1);
+	}
 }
 
 void	ft_int_pos(unsigned int n)
