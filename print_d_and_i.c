@@ -138,26 +138,6 @@ int		ft_ecriture(const char *s, int i, int y, int nombre_charact_int)
 	return i;
 }
 
-int		ft_ecriture_largeur(const char *s, int i, int y, int nombre_charact_int, int len_int)
-{	
-	int count;
-
-	count = 0;
-	if (y > len_int)
-		y = y - len_int;
-	if (s[i + 1] == 'd' || s[i + 1] == 'i' )
-	{
-		while(y != 0)
-		{
-			write(1," ",1);
-			y--;
-		}
-		count = ft_int(nombre_charact_int);
-		i = i + 2;
-	}
-	return i;
-}
-
 int		ft_flag_tiret(int i, const char *s,int nombre_charact_int)
 {
 	int y;
@@ -181,6 +161,26 @@ int		ft_flag_tiret(int i, const char *s,int nombre_charact_int)
 	return (i);
 }
 
+int		ft_ecriture_largeur(const char *s, int i, int y, int nombre_charact_int, int len_int)
+{	
+	int count;
+
+	count = 0;
+	if (y > len_int)
+		y = y - len_int;
+	if (s[i] == 'd' || s[i] == 'i' )
+	{
+		while(y > 0)
+		{
+			write(1," ",1);
+			y--;
+		}
+		count = ft_int(nombre_charact_int);
+		i = i + 2;
+	}
+	return i;
+}
+
 int		ft_flag_largeur(int i, const char *s,int nombre_charact_int)
 {
 	int y;
@@ -192,7 +192,7 @@ int		ft_flag_largeur(int i, const char *s,int nombre_charact_int)
 	tmp = malloc(sizeof(char) * 3);
 	dest = malloc(sizeof(char) * 3);
 	y = i - 1;
-	while (s[i] > '0' && s[i] <= '9')
+	while (s[i] >= '0' && s[i] <= '9')
 	{
 		decalage.nombre_d_espace++;
 		i++;
@@ -202,6 +202,50 @@ int		ft_flag_largeur(int i, const char *s,int nombre_charact_int)
 	dest = ft_itoa(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	ft_ecriture_largeur(s, i, y, nombre_charact_int, len_int);
+	return (i);
+}
+
+int		ft_ecriture_point(const char *s, int i, int y, int nombre_charact_int, int len_int)
+{	
+	int count;
+
+	count = 0;
+	if (y > len_int)
+		y = y - len_int;
+	if (s[i + 1] == 'd' || s[i + 1] == 'i' )
+	{
+		while(y > 0)
+		{
+			write(1,"0",1);
+			y--;
+		}
+		count = ft_int(nombre_charact_int);
+		i = i + 2;
+	}
+	return i;
+}
+
+int		ft_flag_point(int i, const char *s,int nombre_charact_int)
+{
+	int y;
+	char *tmp = NULL;
+	char *dest = NULL;
+	int len_int;
+	flag decalage = {0,0};
+
+	tmp = malloc(sizeof(char) * 3);
+	dest = malloc(sizeof(char) * 3);
+	y = i;
+	while (s[i + 1] >= '0' && s[i + 1] <= '9')
+	{
+		decalage.nombre_d_espace++;
+		i++;
+	}
+	tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
+	y = ft_atoi(tmp);
+	dest = ft_itoa(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_point(s, i, y, nombre_charact_int, len_int);
 	return (i);
 }
 
@@ -224,26 +268,14 @@ int		ft_printf(const char *s, ...)
 			{
 				i = ft_flag_tiret(i + 1, s, va_arg(list, int)) + 2;
 			}
-			if (s[i + 1] > 0 && s[i + 1] <= '9')
+			if (s[i + 1] > '0' && s[i + 1] <= '9')
 			{
-				i = ft_flag_largeur(i + 1, s, va_arg(list, int)) + 2;
+				i = ft_flag_largeur(i + 1, s, va_arg(list, int)) + 1;
 			}
-			/*if (s[i + 1] == '0')
+			if (s[i + 1] == '.' || s[i + 1] == '0')
 			{
-				while (s[i + 1] == '0')
-					i++;
-				if (s[i + 1] > '0' && s[i + 1] <= '9')
-				{
-					y = i;
-					while (s[i + 1] >= '0' && s[i + 1] <= '9')
-					{
-						c++;
-						i++;
-					}
-					tmp = ft_strlcpy(tmp, s, c, y);
-				}
-				y = ft_atoi(tmp);
-			}*/
+				i = ft_flag_point(i + 1, s, va_arg(list, int)) + 2;
+			}
 		}
 		if (s[i] != '\0')
 		{
@@ -258,6 +290,6 @@ int		ft_printf(const char *s, ...)
 
 int main()
 {
-	ft_printf("j'ai %30d ans\n", 254);
-	printf("j'ai %30d ans", 290);
+	ft_printf("j'ai %.0006d ans\n", 24);
+	printf("j'ai %.0006d ans", 24);
 }
