@@ -13,7 +13,7 @@ char		*ft_itoa_base_maj(unsigned int n)
 	if (n == 0)
 	{
 		str[i] = '0';
-		return (ft_write_itoa(str));
+		return (str);
 	}
 	if (n < 0)
 	{
@@ -27,5 +27,5 @@ char		*ft_itoa_base_maj(unsigned int n)
 	}
 	str[i] = '\0';
 	str = ft_strrev(str);
-	return(ft_write_itoa(str));
+	return(str);
 }

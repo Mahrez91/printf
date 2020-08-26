@@ -74,6 +74,11 @@ int		ft_int(int n)
 	}
 }
 
+void	ft_character(char s)
+{
+	write(1, &s, 1);
+}
+
 void	ft_int_pos(unsigned int n)
 {
 	unsigned int i;
@@ -87,11 +92,6 @@ void	ft_int_pos(unsigned int n)
 	if (i >= 10)
 		ft_int(i / 10);
 	ft_putchar(i % 10 + 48);
-}
-
-void	ft_character(char s)
-{
-	write(1, &s, 1);
 }
 
 void	ft_chaine(char *s)
@@ -144,25 +144,6 @@ int		ft_printf(const char *s, ...)
 		}
 		if (s[i] == '%' && s[i + 1] != '%')
 		{
-			if (s[i + 1] == '0')
-			{
-				i++;
-				if (s[i + 1] >= '0' && s[i + 1] <= '9')
-				{
-					while (s[i + 1] >= '0' && s[i + 1] <= '9')
-					{
-						tmp[c] = s[i + 1];
-						i++;
-						c++;
-					}
-					ft_atoi(tmp);
-				}
-			}
-			if (s[i + 1] == 'c')
-			{
-				ft_character(va_arg(list, int));
-				i = i + 2;
-			}
 			if (s[i + 1] == 'c')
 			{
 				ft_character(va_arg(list, int));

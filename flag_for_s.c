@@ -15,17 +15,19 @@ int		ft_flag_point_s(int i, const char *s,char *string)
 int		ft_ecriture_largeur_s(const char *s, int i, int y, char *string, int len_int)
 {	
 	if (y > len_int)
-		y = y - len_int;
-	if (s[i] == 's')
 	{
-		while(y > 0)
+		y = y - len_int;
+		if (s[i] == 's')
 		{
-			write(1," ",1);
-			y--;
+			while(y > 0)
+			{
+				write(1," ",1);
+				y--;
+			}
 		}
-		ft_chaine(string);
-		i = i + 2;
 	}
+	ft_chaine(string);
+	i = i + 2;
 	return i;
 }
 

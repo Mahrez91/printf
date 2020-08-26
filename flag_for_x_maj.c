@@ -1,19 +1,16 @@
-#include "print.h"
 #include "Struct_d_and_i.h"
+#include "print.h"
 
-int		ft_ecriture_tiret(const char *s, int i, int y, int nombre_charact_int)
+int		ft_ecriture_tiret_x_maj(const char *s, int i, int y, char *dest, int len_int)
 {	
-	int count;
-
-	count = 0;
-	if (s[i + 1] == 'd' || s[i + 1] == 'i' )
+	if (s[i + 1] == 'X')
 	{
-		count = ft_int(nombre_charact_int);
+		ft_putstr(dest);
 		i = i + 2;
 	}
-	if (y >= count)
+	if (y >= len_int)
 	{
-		y = y - count;
+		y = y - len_int;
 		while (y != 0)
 		{
 			write(1," ",1);
@@ -23,13 +20,16 @@ int		ft_ecriture_tiret(const char *s, int i, int y, int nombre_charact_int)
 	return i;
 }
 
-int		ft_flag_tiret(int i, const char *s,int nombre_charact_int)
+int		ft_flag_tiret_x_maj(int i, const char *s,unsigned int nombre_charact_int)
 {
 	int y;
 	char *tmp = NULL;
+	char *dest = NULL;
+	int len_int;
 	flag decalage = {0,0};
 
 	tmp = malloc(sizeof(char) * 3);
+	dest = malloc(sizeof(char) * 3);
 	y = 0;
 	if (s[i + 1] >= '0' && s[i + 1] <= '9')
 	{
@@ -41,20 +41,19 @@ int		ft_flag_tiret(int i, const char *s,int nombre_charact_int)
 		}
 		tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
 	}
+	dest = ft_itoa_base_maj(nombre_charact_int);
+	len_int = ft_strlen(dest);
 	y = ft_atoi(tmp);
-	ft_ecriture_tiret(s, i, y, nombre_charact_int);
+	ft_ecriture_tiret_x_maj(s, i, y, dest, len_int);
 	return (i);
 }
 
-int		ft_ecriture_largeur(const char *s, int i, int y, int nombre_charact_int, int len_int)
+int		ft_ecriture_largeur_x_maj(const char *s, int i, int y, char *dest, int len_int)
 {	
-	int count;
-
-	count = 0;
 	if (y > len_int)
 	{
 		y = y - len_int;
-		if (s[i] == 'd' || s[i] == 'i' )
+		if (s[i] == 'X')
 		{
 			while(y > 0)
 			{
@@ -63,12 +62,12 @@ int		ft_ecriture_largeur(const char *s, int i, int y, int nombre_charact_int, in
 			}
 		}
 	}
-	ft_int(nombre_charact_int);
+	ft_putstr(dest);
 	i = i + 2;
 	return i;
 }
 
-int		ft_flag_largeur(int i, const char *s,int nombre_charact_int)
+int		ft_flag_largeur_x_maj(int i, const char *s,unsigned int nombre_charact_int)
 {
 	int y;
 	char *tmp = NULL;
@@ -86,32 +85,32 @@ int		ft_flag_largeur(int i, const char *s,int nombre_charact_int)
 	}
 	tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
 	y = ft_atoi(tmp);
-	dest = ft_itoa(nombre_charact_int);
+	dest = ft_itoa_base_maj(nombre_charact_int);
 	len_int = ft_strlen(dest);
-	ft_ecriture_largeur(s, i, y, nombre_charact_int, len_int);
+	ft_ecriture_largeur_x_maj(s, i, y, dest, len_int);
 	return (i);
 }
 
-int		ft_ecriture_point_and_zero(const char *s, int i, int y, int nombre_charact_int, int len_int)
+int		ft_ecriture_point_and_zero_x_maj(const char *s, int i, int y, char *dest, int len_int)
 {	
 	if (y > len_int)
 	{
 		y = y - len_int;
-		if (s[i + 1] == 'd' || s[i + 1] == 'i' )
+		if (s[i + 1] == 'X')
 		{
 			while(y > 0)
 			{
 				write(1,"0",1);
 				y--;
 			}
-		}
+		}	
 	}
-	ft_int(nombre_charact_int);
+	ft_putstr(dest);
 	i = i + 2;
 	return i;
 }
 
-int		ft_flag_point_and_zero(int i, const char *s,int nombre_charact_int)
+int		ft_flag_point_and_zero_x_maj(int i, const char *s,int nombre_charact_int)
 {
 	int y;
 	char *tmp = NULL;
@@ -129,8 +128,8 @@ int		ft_flag_point_and_zero(int i, const char *s,int nombre_charact_int)
 	}
 	tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
 	y = ft_atoi(tmp);
-	dest = ft_itoa(nombre_charact_int);
+	dest = ft_itoa_base_maj(nombre_charact_int);
 	len_int = ft_strlen(dest);
-	ft_ecriture_point_and_zero(s, i, y, nombre_charact_int, len_int);
+	ft_ecriture_point_and_zero_x_maj(s, i, y, dest, len_int);
 	return (i);
 }

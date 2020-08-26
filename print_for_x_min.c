@@ -33,36 +33,6 @@ char	*ft_strlcpy(char *dst, const char *src, int n, int y)
 	return (dst);
 }
 
-int		ft_int(int n)
-{
-	unsigned int i;
-	static int count;
-	int sign;
-
-	sign = 0;
-	count = 0;
-	if (n < 0)
-	{
-		ft_putchar('-');
-		i = n * -1;
-		sign++;
-	}
-	else
-		i = n;
-	if (i >= 10)
-		ft_int(i / 10);
-	count++;
-	ft_putchar(i % 10 + 48);
-	if (sign == 0)
-	{
-		return (count);
-	}
-	else
-	{
-		return (count + 1);
-	}
-}
-
 int		ft_printf(const char *s, ...)
 {
 	va_list list;
@@ -80,19 +50,19 @@ int		ft_printf(const char *s, ...)
 		{
 			if (s[i + 1] == '-')
 			{
-				i = ft_flag_tiret(i + 1, s, va_arg(list, int)) + 2;
+				i = ft_flag_tiret_x(i + 1, s, va_arg(list, unsigned int)) + 2;
 			}
 			if (s[i + 1] > '0' && s[i + 1] <= '9')
 			{
-				i = ft_flag_largeur(i + 1, s, va_arg(list, int)) + 1;
+				i = ft_flag_largeur_x(i + 1, s, va_arg(list,unsigned int)) + 1;
 			}
-			if (s[i + 1] == '.' || s[i + 1] == '0')
+			if (s[i + 1] == '.' || s[i+1] == '0')
 			{
-				i = ft_flag_point_and_zero(i + 1, s, va_arg(list, int)) + 2;
+				i = ft_flag_point_and_zero_x(i + 1, s, va_arg(list,unsigned int)) + 2;
 			}
-			if (s[i + 1] == 'd' || s[i + 1] == 'i' )
+			if (s[i + 1] == 'x')
 			{
-				ft_int(va_arg(list, int));
+				ft_putstr(ft_itoa_base_min(va_arg(list, int)));
 				i = i + 2;
 			}
 		}
@@ -109,6 +79,6 @@ int		ft_printf(const char *s, ...)
 
 int main()
 {
-	ft_printf("j'ai %0106d ans\n", 24);
-	printf("j'ai %000106d ans", 24);
+	ft_printf("j'ai %0025x ans\n", 1000);
+	printf("j'ai %0025x ans", 1000);
 }
