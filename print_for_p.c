@@ -65,6 +65,8 @@ int		ft_int(int n)
 
 int		ft_printf(const char *s, ...)
 {
+	va_list list;
+	static int i;
 	int y;
 	int count;
 
@@ -78,19 +80,15 @@ int		ft_printf(const char *s, ...)
 		{
 			if (s[i + 1] == '-')
 			{
-				i = ft_flag_tiret(i + 1, s, va_arg(list, int)) + 2;
+				i = ft_flag_tiret_p(i + 1, s, va_arg(list, unsigned int)) + 2;
 			}
 			if (s[i + 1] > '0' && s[i + 1] <= '9')
 			{
-				i = ft_flag_largeur(i + 1, s, va_arg(list, int)) + 1;
+				i = ft_flag_largeur_p(i + 1, s, va_arg(list, unsigned int)) + 1;
 			}
-			if (s[i + 1] == '.' || s[i + 1] == '0')
+			if (s[i + 1] == 'p')
 			{
-				i = ft_flag_point_and_zero(i + 1, s, va_arg(list, int)) + 2;
-			}
-			if (s[i + 1] == 'd' || s[i + 1] == 'i' )
-			{
-				ft_int(va_arg(list, int));
+				ft_itoa_base_pointeur(va_arg(list, unsigned int));
 				i = i + 2;
 			}
 		}
@@ -103,4 +101,12 @@ int		ft_printf(const char *s, ...)
 	va_end(list);
 	printf("\n");
 	return (0);
+}
+
+int main()
+{
+	int *ptr = 0;
+
+	ft_printf("j'ai %p ans\n", &ptr);
+	printf("j'ai %p ans", &ptr);
 }

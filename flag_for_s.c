@@ -1,17 +1,6 @@
 #include "print.h"
 #include "Struct_d_and_i.h"
 
-int		ft_flag_point_s(int i, const char *s,char *string)
-{
-	while (s[i + 1] != 's')
-	{
-		i++;
-	}
-	ft_chaine(string);
-	i = i + 2;
-	return (i);
-}
-
 int		ft_ecriture_largeur_s(const char *s, int i, int y, char *string, int len_int)
 {	
 	if (y > len_int)
@@ -91,4 +80,49 @@ int		ft_flag_tiret_s(int i, const char *s,char *string)
 	y = ft_atoi(tmp) - ft_strlen(string);
 	ft_ecriture_tiret_s(s, i, y, string);
 	return (i);
+}
+
+int		ft_ecriture_point_s(int i, int y, char *string, int len_int)
+{	
+	int count;
+	int tmp;
+
+	tmp = 0;
+	count = 0;
+	if (y < len_int)
+	{	
+		tmp = len_int - y;
+		while(y > 0)
+		{
+			ft_putchar(string[count]);
+			y--;
+			count++;
+		}
+		return (i + 2);
+	}
+	else
+		ft_chaine(string);
+	i = i + 2;
+	return i;
+}
+
+int		ft_flag_point_s(int i, const char *s,char *string)
+{
+	int y;
+	char *tmp = NULL;
+	int len_int;
+	flag decalage = {0,0};
+
+	tmp = malloc(sizeof(char) * 3);
+	y = i;
+	while (s[i + 1] >= '0' && s[i + 1] <= '9')
+	{
+		decalage.nombre_d_espace++;
+		i++;
+	}
+	tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
+	y = ft_atoi(tmp);
+	len_int = ft_strlen(string);
+	y = ft_ecriture_point_s(i, y, string, len_int);
+	return (y);
 }

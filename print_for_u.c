@@ -54,17 +54,34 @@ int		ft_int(int n)
 	count++;
 	ft_putchar(i % 10 + 48);
 	if (sign == 0)
-	{
 		return (count);
+	else
+		return (count + 1);
+}
+
+int	ft_int_pos(unsigned int n)
+{
+	unsigned int i;
+	int count;
+
+	count = 0;
+	if (n < 0)
+	{
+		i = 4294967296 - (-1 * n);
 	}
 	else
-	{
-		return (count + 1);
-	}
+		i = n;
+	if (i >= 10)
+		count = ft_int(i / 10);
+	ft_putchar(i % 10 + 48);
+	return count + 1;
+
 }
 
 int		ft_printf(const char *s, ...)
 {
+	va_list list;
+	static int i;
 	int y;
 	int count;
 
@@ -78,19 +95,19 @@ int		ft_printf(const char *s, ...)
 		{
 			if (s[i + 1] == '-')
 			{
-				i = ft_flag_tiret(i + 1, s, va_arg(list, int)) + 2;
+				i = ft_flag_tiret_u(i + 1, s, va_arg(list,unsigned int)) + 2;
 			}
 			if (s[i + 1] > '0' && s[i + 1] <= '9')
 			{
-				i = ft_flag_largeur(i + 1, s, va_arg(list, int)) + 1;
+				i = ft_flag_largeur_u(i + 1, s, va_arg(list,unsigned int)) + 1;
 			}
 			if (s[i + 1] == '.' || s[i + 1] == '0')
 			{
-				i = ft_flag_point_and_zero(i + 1, s, va_arg(list, int)) + 2;
+				i = ft_flag_point_and_zero_u(i + 1, s, va_arg(list, unsigned int)) + 2;
 			}
-			if (s[i + 1] == 'd' || s[i + 1] == 'i' )
+			if (s[i + 1] == 'u')
 			{
-				ft_int(va_arg(list, int));
+				ft_int_pos(va_arg(list, unsigned int));
 				i = i + 2;
 			}
 		}
@@ -103,4 +120,10 @@ int		ft_printf(const char *s, ...)
 	va_end(list);
 	printf("\n");
 	return (0);
+}
+
+int main()
+{
+	ft_printf("j'ai %.3u ans et %-25u mois et %.12u jours \n", 24, 6, 21);
+	printf("j'ai %.3u ans et %-25u mois et %.12u jours", 24, 6, 21);
 }
