@@ -25,60 +25,23 @@ int		ft_printf(const char *s, ...)
 	{
 		if (s[i] == '%' && s[i + 1] != '%')
 		{
-			if (s[i + 1] == '-' || s[i] = '.' || s[i] == '0' || s[i] > '0' && s[i] <= '9' || s[i] = 'd')
-			{
-				ft_chaine(va_arg(list, char *));
-				i = i + 2;
+			c = i;
+			if (s[i + 1] == '-' || s[i + 1] == '.' || s[i + 1] == '0' || (s[i + 1] > '0' && s[i + 1] <= '9'))
+			{	
+				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c')
+				{	
+					c++;
+				}
+				if (s[c] == 'd'|| s[c] == 'i')
+				{
+					i = ft_print_for_d_and_i(va_arg(list, int), s, i + 1);
+				}
+				if(s[c] == 'c')
+				{
+					i = ft_print_for_c(va_arg(list, int), s, i + 1);
+				}
 			}
 		}
-		/*if (s[i] == '%' && s[i + 1] != '%')
-		{
-			if (s[i + 1] == 'x')
-			{
-				ft_itoa_base_min(va_arg(list, unsigned int));
-				i = i + 2;
-			}
-		}
-		if (s[i] == '%' && s[i + 1] != '%')
-		{
-			if (s[i + 1] == 'X')
-			{
-				ft_itoa_base_maj(va_arg(list, unsigned int));
-				i = i + 2;
-			}
-		}
-		if (s[i] == '%' && s[i + 1] != '%')
-		{
-			if (s[i + 1] == 'c')
-			{
-				ft_character(va_arg(list, int));
-				i = i + 2;
-			}
-		}
-		if (s[i] == '%' && s[i + 1] != '%')
-		{
-			if (s[i + 1] == 'd' || s[i + 1] == 'i' )
-			{
-				ft_int(va_arg(list, int));
-				i = i + 2;
-			}
-		}
-		if (s[i] == '%' && s[i + 1] != '%')
-		{
-			if (s[i + 1] == 'u')
-			{
-				ft_int_pos(va_arg(list, unsigned int));
-				i = i + 2;
-			}
-		}
-		if (s[i] == '%' && s[i + 1] != '%')
-		{
-			if (s[i + 1] == 'p')
-			{
-				ft_itoa_base_pointeur(va_arg(list, unsigned int));
-				i = i + 2;
-			}
-		}*/
 		if (s[i] != '\0')
 		{
 			write(1, &s[i], 1);
@@ -92,8 +55,6 @@ int		ft_printf(const char *s, ...)
 
 int main()
 {
-	int *ptr = 0;
-	int *ptr2 = 0;
-	ft_printf("j'ai %p %c\n", &ptr, 'a');
-	printf("j'ai %p %c", &ptr2, 'a');
+	ft_printf("j'ai %.00101i ans\n", 20);
+	printf("j'ai %.00101i ans", 20);
 }

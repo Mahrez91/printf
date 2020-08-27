@@ -17,6 +17,7 @@ int				ft_strlen(char *s);
 int				ft_flag_tiret(int i, const char *s,int nombre_charact_int);
 int				ft_flag_largeur(int i, const char *s,int nombre_charact_int);
 int				ft_flag_point_and_zero(int i, const char *s,int nombre_charact_int);
+int				ft_print_for_d_and_i(int nombre_charact_int, const char *s, int i);
 int				ft_flag_point_s(int i, const char *s,char *string);
 int				ft_flag_largeur_s(int i, const char *s,char *string);
 int				ft_flag_tiret_s(int i, const char *s,char *string);

@@ -63,44 +63,19 @@ int		ft_int(int n)
 	}
 }
 
-int		ft_printf(const char *s, ...)
+int		ft_print_for_d_and_i(int nombre_charact_int, const char *s, int i)
 {
-	int y;
-	int count;
-
-	i = 0;
-	y = 0;
-	count = 0;
-	va_start(list, s);
-	while (s[i] != '\0')
+	if (s[i] == '-')
 	{
-		if (s[i] == '%' && s[i + 1] != '%')
-		{
-			if (s[i + 1] == '-')
-			{
-				i = ft_flag_tiret(i + 1, s, va_arg(list, int)) + 2;
-			}
-			if (s[i + 1] > '0' && s[i + 1] <= '9')
-			{
-				i = ft_flag_largeur(i + 1, s, va_arg(list, int)) + 1;
-			}
-			if (s[i + 1] == '.' || s[i + 1] == '0')
-			{
-				i = ft_flag_point_and_zero(i + 1, s, va_arg(list, int)) + 2;
-			}
-			if (s[i + 1] == 'd' || s[i + 1] == 'i' )
-			{
-				ft_int(va_arg(list, int));
-				i = i + 2;
-			}
-		}
-		if (s[i] != '\0')
-		{
-			write(1, &s[i], 1);
-			i++;
-		}
+		i = ft_flag_tiret(i + 1, s, nombre_charact_int) + 2;
 	}
-	va_end(list);
-	printf("\n");
-	return (0);
+	if (s[i] > '0' && s[i + 1] <= '9')
+	{
+		i = ft_flag_largeur(i, s, nombre_charact_int) + 1;
+	}
+	if (s[i] == '.' || s[i] == '0')
+	{
+		i = ft_flag_point_and_zero(i + 1, s, nombre_charact_int) + 1;
+	}
+	return (i);
 }

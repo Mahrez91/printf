@@ -124,5 +124,6 @@ int		ft_flag_point_s(int i, const char *s,char *string)
 	y = ft_atoi(tmp);
 	len_int = ft_strlen(string);
 	y = ft_ecriture_point_s(i, y, string, len_int);
+	free(tmp);
 	return (y);
 }

@@ -63,6 +63,6 @@ int		ft_printf(const char *s, ...)
 
 int main()
 {
-	ft_printf("j'ai %-2c ans\n", '8');
-	printf("j'ai %.2c ans", '8');
+	ft_printf("j'ai %263c ans\n", '8');
+	printf("j'ai %263o ans", '8');
 }

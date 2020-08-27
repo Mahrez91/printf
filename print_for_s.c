@@ -92,5 +92,5 @@ int		ft_printf(const char *s, ...)
 int main()
 {
 	ft_printf("j'ai %.3s ans\n", "vingt");
-	printf("j'ai %.3s ans", "vingt");
+	printf("j'ai %*.s ans",10, "vingt");
 }
