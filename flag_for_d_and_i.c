@@ -11,7 +11,7 @@ int		ft_ecriture_tiret(int i, int y, int nombre_charact_int)
 	if (y >= count)
 	{
 		y = y - count + 1;
-		while (y != 0)
+		while (y > 1)
 		{
 			write(1," ",1);
 			y--;

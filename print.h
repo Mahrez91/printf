@@ -21,8 +21,10 @@ int				ft_print_for_d_and_i(int nombre_charact_int, const char *s, int i);
 int				ft_flag_point_s(int i, const char *s,char *string);
 int				ft_flag_largeur_s(int i, const char *s,char *string);
 int				ft_flag_tiret_s(int i, const char *s,char *string);
+int				ft_print_for_s(char *string, const char *s, int i);
 int				ft_flag_tiret_c(int i, const char *s,int character);
 int				ft_flag_largeur_c(int i, const char *s,int character);
+int				ft_print_for_c(int nombre_charact_int, const char *s, int i);
 int				ft_flag_tiret_x(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_flag_largeur_x(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_flag_point_and_zero_x(int i, const char *s,int nombre_charact_int);
@@ -32,6 +34,7 @@ int				ft_flag_point_and_zero_x_maj(int i, const char *s,int nombre_charact_int)
 int				ft_flag_tiret_u(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_flag_largeur_u(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_flag_point_and_zero_u(int i, const char *s,unsigned int nombre_charact_int);
+int				ft_print_for_u(int nombre_charact_int, const char *s, int i);
 int				ft_flag_largeur_p(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_flag_tiret_p(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_atoi(const char *nptr);

@@ -1,64 +1,6 @@
 #include "Struct_d_and_i.h"
 #include "print.h"
 
-void	ft_putchar(char s)
-{
-	write(1, &s, 1);
-}
-
-int		ft_strlen(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_strlcpy(char *dst, const char *src, int n, int y)
-{
-	int	i;
-
-	i = 0;
-	while (i < n)
-	{
-		dst[i] = src[y + 1];
-		i++;
-		y++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-int		ft_int(int n)
-{
-	unsigned int i;
-	static int count;
-	int sign;
-
-	sign = 0;
-	count = 0;
-	if (n < 0)
-	{
-		ft_putchar('-');
-		i = n * -1;
-		sign++;
-	}
-	else
-		i = n;
-	if (i >= 10)
-		ft_int(i / 10);
-	count++;
-	ft_putchar(i % 10 + 48);
-	if (sign == 0)
-		return (count);
-	else
-		return (count + 1);
-}
-
 int	ft_int_pos(unsigned int n)
 {
 	unsigned int i;
@@ -78,52 +20,61 @@ int	ft_int_pos(unsigned int n)
 
 }
 
-int		ft_printf(const char *s, ...)
-{
-	va_list list;
-	static int i;
-	int y;
+int		ft_ecriture_tiret_u(int i, int y, unsigned int nombre_charact_int)
+{	
 	int count;
 
-	i = 0;
-	y = 0;
-	count = 0;
-	va_start(list, s);
-	while (s[i] != '\0')
+	count = ft_int_pos(nombre_charact_int);
+	i = i + 2;
+
+	if (y >= count)
 	{
-		if (s[i] == '%' && s[i + 1] != '%')
+		y = y - count;
+		while (y != 0)
 		{
-			if (s[i + 1] == '-')
-			{
-				i = ft_flag_tiret_u(i + 1, s, va_arg(list,unsigned int)) + 2;
-			}
-			if (s[i + 1] > '0' && s[i + 1] <= '9')
-			{
-				i = ft_flag_largeur_u(i + 1, s, va_arg(list,unsigned int)) + 1;
-			}
-			if (s[i + 1] == '.' || s[i + 1] == '0')
-			{
-				i = ft_flag_point_and_zero_u(i + 1, s, va_arg(list, unsigned int)) + 2;
-			}
-			if (s[i + 1] == 'u')
-			{
-				ft_int_pos(va_arg(list, unsigned int));
-				i = i + 2;
-			}
-		}
-		if (s[i] != '\0')
-		{
-			write(1, &s[i], 1);
-			i++;
-		}
+			write(1," ",1);
+			y--;
+		}	
 	}
-	va_end(list);
-	printf("\n");
-	return (0);
+	return i;
 }
 
-int main()
+int		ft_flag_tiret_u(int i, const char *s,unsigned int nombre_charact_int)
 {
-	ft_printf("j'ai %.3u ans et %-25u mois et %.12u jours \n", 24, 6, 21);
-	printf("j'ai %.3u ans et %-25u mois et %.12u jours", 24, 6, 21);
+	int y;
+	char *tmp = NULL;
+	flag decalage = {0,0};
+
+	tmp = malloc(sizeof(char) * 3);
+	y = 0;
+	if (s[i] >= '0' && s[i] <= '9')
+	{
+		y = i - 1;
+		while (s[i] >= '0' && s[i] <= '9')
+		{
+			decalage.nombre_d_espace++;
+			i++;
+		}
+		tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
+	}
+	y = ft_atoi(tmp);
+	ft_ecriture_tiret_u(i, y, nombre_charact_int);
+	return (i);
+}
+
+int		ft_print_for_u(int nombre_charact_int, const char *s, int i)
+{
+	if (s[i] == '-')
+	{
+		i = ft_flag_tiret_u(i + 1, s, nombre_charact_int) + 1;
+	}
+	/*if (s[i] > '0' && s[i] <= '9')
+	{
+		i = ft_flag_largeur(i, s, nombre_charact_int) + 1;
+	}
+	if (s[i] == '.' || s[i] == '0')
+	{
+		i = ft_flag_point_and_zero(i + 1, s, nombre_charact_int) + 1;
+	}*/
+	return (i);
 }

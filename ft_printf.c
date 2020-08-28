@@ -28,18 +28,42 @@ int		ft_printf(const char *s, ...)
 			c = i;
 			if (s[i + 1] == '-' || s[i + 1] == '.' || s[i + 1] == '0' || (s[i + 1] > '0' && s[i + 1] <= '9'))
 			{	
-				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c')
+				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 's' && s[c] != 'u')
 				{	
 					c++;
 				}
 				if (s[c] == 'd'|| s[c] == 'i')
 				{
 					i = ft_print_for_d_and_i(va_arg(list, int), s, i + 1);
+
 				}
 				if(s[c] == 'c')
 				{
 					i = ft_print_for_c(va_arg(list, int), s, i + 1);
 				}
+				if(s[c] == 's')
+				{
+					i = ft_print_for_s(va_arg(list, char *), s, i + 1);
+				}
+				if(s[c] == 'u')
+				{
+					i = ft_print_for_u(va_arg(list, unsigned int), s, i + 1);
+				}
+			}
+			if (s[i + 1] == 'd' || s[i + 1] == 'i')
+			{
+				ft_int(va_arg(list, int));
+				i = i + 2;
+			}
+			if (s[i + 1] == 'c')
+			{
+				ft_putchar(va_arg(list, int));
+				i = i + 2;
+			}
+			if (s[i + 1] == 's')
+			{
+				ft_chaine(va_arg(list, char*));
+				i = i + 2;
 			}
 		}
 		if (s[i] != '\0')
@@ -55,6 +79,6 @@ int		ft_printf(const char *s, ...)
 
 int main()
 {
-	ft_printf("j'ai %.00101i ans\n", 20);
-	printf("j'ai %.00101i ans", 20);
+	ft_printf("j'ai %-u ans ok\n", 20);
+	printf("j'ai %-u ans ok", 20);
 }

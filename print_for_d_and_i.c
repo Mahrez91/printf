@@ -67,9 +67,9 @@ int		ft_print_for_d_and_i(int nombre_charact_int, const char *s, int i)
 {
 	if (s[i] == '-')
 	{
-		i = ft_flag_tiret(i + 1, s, nombre_charact_int) + 2;
+		i = ft_flag_tiret(i + 1, s, nombre_charact_int) + 1;
 	}
-	if (s[i] > '0' && s[i + 1] <= '9')
+	if (s[i] > '0' && s[i] <= '9')
 	{
 		i = ft_flag_largeur(i, s, nombre_charact_int) + 1;
 	}
