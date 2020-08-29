@@ -28,7 +28,7 @@ int		ft_printf(const char *s, ...)
 			c = i;
 			if (s[i + 1] == '-' || s[i + 1] == '.' || s[i + 1] == '0' || (s[i + 1] > '0' && s[i + 1] <= '9'))
 			{	
-				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 's' && s[c] != 'u')
+				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 's' && s[c] != 'u' && s[c] != 'p')
 				{	
 					c++;
 				}
@@ -47,7 +47,11 @@ int		ft_printf(const char *s, ...)
 				}
 				if(s[c] == 'u')
 				{
-					i = ft_print_for_u(va_arg(list, unsigned int), s, i + 1);
+					i = ft_print_for_u(va_arg(list,unsigned int), s, i + 1);
+				}
+				if(s[c] == 'p')
+				{
+					i = ft_print_for_p(va_arg(list,unsigned int), s, i + 1);
 				}
 			}
 			if (s[i + 1] == 'd' || s[i + 1] == 'i')
@@ -65,6 +69,12 @@ int		ft_printf(const char *s, ...)
 				ft_chaine(va_arg(list, char*));
 				i = i + 2;
 			}
+			if (s[i + 1] == 'u')
+			{
+				ft_int_for_u(va_arg(list, unsigned int));
+				i = i + 2;
+			}
+			
 		}
 		if (s[i] != '\0')
 		{
@@ -78,7 +88,11 @@ int		ft_printf(const char *s, ...)
 }
 
 int main()
-{
-	ft_printf("j'ai %-u ans ok\n", 20);
-	printf("j'ai %-u ans ok", 20);
+{	
+	//char s2[] = "salut ca va bien";
+	int *ptr = 0;
+	printf("\n\n----------STRINGS----------\n\n");
+
+	ft_printf(" %-26p ans\n", &ptr);
+	printf(" %-26p ans\n", &ptr);
 }

@@ -53,3 +53,28 @@ char		*ft_itoa(int n)
 	str = ft_strrev(str);
 	return(str);
 }
+
+char		*ft_itoa_for_u(unsigned int n)
+{
+	char *alpha;
+	char *str;
+	int i;
+
+	i = 0;
+	if (!(str = (char*)malloc(sizeof(char) * (ft_count(n) + 1))))
+		return (0);
+	alpha = "0123456789abcdef";
+	if (n < 0)
+	{
+		n = 4294967296 - (-1 * n);
+	}
+	while (n > 0)
+	{
+		str[i] = alpha[n % 10];
+		i++;
+		n = n / 10;
+	}
+	str[i] = '\0';
+	str = ft_strrev(str);
+	return(str);
+}

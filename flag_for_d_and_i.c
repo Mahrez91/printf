@@ -43,6 +43,7 @@ int		ft_flag_tiret(int i, const char *s,int nombre_charact_int)
 	return (i);
 }
 
+
 int		ft_ecriture_largeur( int i, int y, int nombre_charact_int, int len_int)
 {	
 	if (y > len_int)
@@ -110,6 +111,11 @@ int		ft_flag_point_and_zero(int i, const char *s,int nombre_charact_int)
 	tmp = malloc(sizeof(char) * 3);
 	dest = malloc(sizeof(char) * 3);
 	y = i - 1;
+	if (s[i] == '.')
+	{
+		y++;
+		i++;
+	}
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		decalage.nombre_d_espace++;

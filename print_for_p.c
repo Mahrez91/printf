@@ -1,112 +1,105 @@
 #include "Struct_d_and_i.h"
 #include "print.h"
 
-void	ft_putchar(char s)
-{
-	write(1, &s, 1);
+int		ft_ecriture_tiret_p(int i, int y, char *dest, int len_int)
+{	
+
+	write(1, "0x7ffe",6);
+	ft_putstr(dest);
+	i = i + 2;
+	if (y >= len_int)
+	{
+		y = y - len_int;
+		while (y != 0)
+		{
+			write(1," ",1);
+			y--;
+		}	
+	}
+	return i;
 }
 
-int		ft_strlen(char *s)
+int		ft_flag_tiret_p(int i, const char *s,unsigned int nombre_charact_int)
 {
-	int i;
+	int y;
+	char *tmp = NULL;
+	char *dest = NULL;
+	int len_int;
+	flag decalage = {0,0};
 
-	i = 0;
-	while (s[i] != '\0')
+	tmp = malloc(sizeof(char) * 3);
+	dest = malloc(sizeof(char) * 3);
+	y = 0;
+	if (s[i] >= '0' && s[i] <= '9')
 	{
-		i++;
+		y = i - 1;
+		while (s[i] >= '0' && s[i] <= '9')
+		{
+			decalage.nombre_d_espace++;
+			i++;
+		}
+		tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
 	}
+	dest = ft_itoa_base_min(nombre_charact_int);
+	len_int = ft_strlen(dest) + 6;
+	y = ft_atoi(tmp);
+	ft_ecriture_tiret_p(i, y, dest, len_int);
 	return (i);
 }
 
-char	*ft_strlcpy(char *dst, const char *src, int n, int y)
-{
-	int	i;
-
-	i = 0;
-	while (i < n)
+int		ft_ecriture_largeur_p(const char *s, int i, int y, char *dest, int len_int)
+{	
+	if (y > len_int)
 	{
-		dst[i] = src[y + 1];
-		i++;
-		y++;
+		y = y - len_int;
+		if (s[i] == 'p')
+		{
+			while(y > 0)
+			{
+				write(1," ",1);
+				y--;
+			}
+		}
 	}
-	dst[i] = '\0';
-	return (dst);
+	write(1, "0x7ffe",6);
+	ft_putstr(dest);
+	i = i + 2;
+	return i;
 }
 
-int		ft_int(int n)
+int		ft_flag_largeur_p(int i, const char *s,unsigned int nombre_charact_int)
 {
-	unsigned int i;
-	static int count;
-	int sign;
-
-	sign = 0;
-	count = 0;
-	if (n < 0)
-	{
-		ft_putchar('-');
-		i = n * -1;
-		sign++;
-	}
-	else
-		i = n;
-	if (i >= 10)
-		ft_int(i / 10);
-	count++;
-	ft_putchar(i % 10 + 48);
-	if (sign == 0)
-	{
-		return (count);
-	}
-	else
-	{
-		return (count + 1);
-	}
-}
-
-int		ft_printf(const char *s, ...)
-{
-	va_list list;
-	static int i;
 	int y;
-	int count;
+	char *tmp = NULL;
+	char *dest = NULL; 
+	int len_int;
+	flag decalage = {0,0};
 
-	i = 0;
-	y = 0;
-	count = 0;
-	va_start(list, s);
-	while (s[i] != '\0')
+	tmp = malloc(sizeof(char) * 3);
+	dest = malloc(sizeof(char) * 3);
+	y = i - 1;
+	while (s[i] >= '0' && s[i] <= '9')
 	{
-		if (s[i] == '%' && s[i + 1] != '%')
-		{
-			if (s[i + 1] == '-')
-			{
-				i = ft_flag_tiret_p(i + 1, s, va_arg(list, unsigned int)) + 2;
-			}
-			if (s[i + 1] > '0' && s[i + 1] <= '9')
-			{
-				i = ft_flag_largeur_p(i + 1, s, va_arg(list, unsigned int)) + 1;
-			}
-			if (s[i + 1] == 'p')
-			{
-				ft_itoa_base_pointeur(va_arg(list, unsigned int));
-				i = i + 2;
-			}
-		}
-		if (s[i] != '\0')
-		{
-			write(1, &s[i], 1);
-			i++;
-		}
+		decalage.nombre_d_espace++;
+		i++;
 	}
-	va_end(list);
-	printf("\n");
-	return (0);
+	tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
+	y = ft_atoi(tmp);
+	dest = ft_itoa_base_min(nombre_charact_int);
+	len_int = ft_strlen(dest) + 6;
+	ft_ecriture_largeur_p(s, i, y, dest, len_int);
+	return (i);
 }
 
-int main()
+int		ft_print_for_p(unsigned int nombre_charact_int, const char *s, int i)
 {
-	int *ptr = 0;
-
-	ft_printf("j'ai %p ans\n", &ptr);
-	printf("j'ai %p ans", &ptr);
+	if (s[i] == '-')
+	{
+		i = ft_flag_tiret_p(i + 1, s, nombre_charact_int) + 1;
+	}
+	if (s[i] > '0' && s[i] <= '9')
+	{
+		i = ft_flag_largeur_p(i, s, nombre_charact_int) + 1;
+	}
+	return (i);
 }
