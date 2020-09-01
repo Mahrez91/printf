@@ -73,9 +73,13 @@ int		ft_print_for_d_and_i(int nombre_charact_int, const char *s, int i)
 	{
 		i = ft_flag_largeur(i, s, nombre_charact_int) + 1;
 	}
-	if (s[i] == '.' || s[i] == '0')
+	if (s[i] == '.' )
 	{
-		i = ft_flag_point_and_zero(i + 1, s, nombre_charact_int) + 1;
+		i = ft_flag_point(i + 1, s, nombre_charact_int) + 1;
+	}
+	if (s[i] == '0')
+	{
+		i = ft_flag_zero(i + 1, s, nombre_charact_int) + 1;
 	}
 	return (i);
 }

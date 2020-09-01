@@ -90,9 +90,10 @@ int		ft_printf(const char *s, ...)
 int main()
 {	
 	//char s2[] = "salut ca va bien";
-	int *ptr = 0;
+	//int *ptr = 0;
 	printf("\n\n----------STRINGS----------\n\n");
 
-	ft_printf(" %-26p ans\n", &ptr);
-	printf(" %-26p ans\n", &ptr);
+ 	ft_printf("%-25d|| %d || %.13d || %0019d|| %14d || %-49.50d || %14.32d || %-12.8d || %-2.8d || %14.8d \n", 10, 23,24,26,14,258,23,1,21,12);
+	printf("%-25d|| %d || %.13d || %0019d|| %14d || %-49.50d || %14.32d || %-12.8d || %-2.8d || %14.8d ", 10, 23,24,26,14,258,23,1,21,12);
+
 }

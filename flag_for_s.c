@@ -24,11 +24,66 @@ int		ft_flag_largeur_s(int i, const char *s,char *string)
 {
 	int y;
 	char *tmp = NULL;
+	char *dest = NULL;
+	int tampon;
+	int placement;
 	int len_int;
 	flag decalage = {0,0};
 
+	placement = 0;
+	tampon = 0;
 	tmp = malloc(sizeof(char) * 3);
+	dest = malloc(sizeof(char) * 3);
 	y = i - 1;
+	while (s[y] != 's')
+	{
+		if (s[y] == '.')
+		{
+			placement = y + 1;
+			while (s[y + 1] >= '0' && s[y + 1] <= '9')
+			{
+				decalage.nombre_de_zero++;
+				y++;
+			}
+			dest = ft_strlcpy(dest, s, decalage.nombre_de_zero, y - decalage.nombre_de_zero);
+			tampon = ft_atoi(dest);
+			y = i;
+			while (s[i] >= '0' && s[i] <= '9')
+			{
+				decalage.nombre_d_espace++;
+				i++;
+			}
+			tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace,y - 1);
+			y = ft_atoi(tmp);
+			len_int = ft_strlen(dest);
+			if (y > tampon)
+			{
+				if (tampon > len_int)
+				{
+					while (y - tampon > 0)
+					{
+						write(1," ", 1);
+						y--;
+					}
+				}
+				else
+				{
+					while (y - len_int > 0)
+					{
+						write(1," ", 1);
+						y--;
+					}
+				}
+			}
+			ft_flag_point_s(placement, s,string);
+			while (s[i] != 's')
+			{
+				i++;
+			}
+			return i;
+		}
+		y++;
+	}
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		decalage.nombre_d_espace++;
@@ -60,10 +115,70 @@ int		ft_flag_tiret_s(int i, const char *s,char *string)
 {
 	int y;
 	char *tmp = NULL;
+	char *dest = NULL;
+	int len_int;
+	int tampon;
+	int double_flag;
 	flag decalage = {0,0};
 
+	tampon = 0;
+	len_int = 0;
 	tmp = malloc(sizeof(char) * 3);
-	y = 0;
+	dest = malloc(sizeof(char) * 3);
+	y = i;
+	while (s[y] != 's')
+	{
+		if (s[y] == '.')
+		{
+			double_flag =ft_flag_point_s(y + 1, s,string);
+			while (s[y + 1] >= '0' && s[y + 1] <= '9')
+			{
+				decalage.nombre_de_zero++;
+				y++;
+			}
+			dest = ft_strlcpy(dest, s, decalage.nombre_de_zero, y - decalage.nombre_de_zero);
+			tampon = ft_atoi(dest);
+			//printf("tampon = %d \n", tampon);
+			y = i;
+			while (s[i + 1] >= '0' && s[i + 1] <= '9')
+			{
+				decalage.nombre_d_espace++;
+				i++;
+			}
+			tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
+			y = ft_atoi(tmp);
+			if (ft_strlen(string) < tampon)
+				len_int = ft_strlen(string);
+			else
+				len_int = tampon;
+			//printf("len = %d \n", y);
+			if (y > tampon)
+			{
+				if (tampon > len_int)
+				{
+					while (y - len_int> 0)
+					{
+						write(1," ", 1);
+						y--;
+					}
+				}
+			}
+			else
+			{	
+				while (y > len_int)
+				{
+					write(1," ", 1);
+					y--;
+				}
+			}
+			while (s[i] != 's')
+			{
+				i++;
+			}
+			return (i - 1);
+		}
+		y++;
+	}
 	if (s[i + 1] >= '0' && s[i + 1] <= '9')
 	{
 		y = i;
