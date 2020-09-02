@@ -91,7 +91,7 @@ int		ft_flag_largeur_p(int i, const char *s,unsigned int nombre_charact_int)
 	return (i);
 }
 
-int		ft_print_for_p(unsigned int nombre_charact_int, const char *s, int i)
+int		ft_print_for_p(void * nombre_charact_int, const char *s, int i)
 {
 	if (s[i] == '-')
 	{

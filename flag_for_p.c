@@ -21,7 +21,7 @@ int		ft_ecriture_tiret_p(const char *s, int i, int y, char *dest, int len_int)
 	return i;
 }
 
-int		ft_flag_tiret_p(int i, const char *s,unsigned int nombre_charact_int)
+int		ft_flag_tiret_p(int i, const char *s,void * nombre_charact_int)
 {
 	int y;
 	char *tmp = NULL;
@@ -69,7 +69,7 @@ int		ft_ecriture_largeur_p(const char *s, int i, int y, char *dest, int len_int)
 	return i;
 }
 
-int		ft_flag_largeur_p(int i, const char *s,unsigned int nombre_charact_int)
+int		ft_flag_largeur_p(int i, const char *s,void * nombre_charact_int)
 {
 	int y;
 	char *tmp = NULL;
@@ -87,7 +87,7 @@ int		ft_flag_largeur_p(int i, const char *s,unsigned int nombre_charact_int)
 	}
 	tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
 	y = ft_atoi(tmp);
-	dest = ft_itoa_base_min(nombre_charact_int);
+	dest = ft_itoa_base_min((intptr_r)nombre_charact_int);
 	len_int = ft_strlen(dest) + 6;
 	ft_ecriture_largeur_p(s, i, y, dest, len_int);
 	return (i);

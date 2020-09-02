@@ -188,7 +188,7 @@ int		ft_flag_point_u(int i, const char *s,unsigned int nombre_charact_int)
 	return (i);
 }
 
-int		ft_ecriture_double_flag_u(int i, int y, int nombre_charact_int,int len_int)
+int		ft_ecriture_double_flag_u(int i, int y, unsigned int nombre_charact_int,int len_int)
 {	
 	while(y > len_int)
 	{

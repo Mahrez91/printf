@@ -147,19 +147,27 @@ int		ft_flag_tiret_s(int i, const char *s,char *string)
 			}
 			tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
 			y = ft_atoi(tmp);
-			if (ft_strlen(string) < tampon)
+			if (ft_strlen(string) < y)
 				len_int = ft_strlen(string);
 			else
-				len_int = tampon;
-			//printf("len = %d \n", y);
+				len_int = y;
+			//printf("len = %d \n", len_int);
 			if (y > tampon)
 			{
 				if (tampon > len_int)
 				{
-					while (y - len_int> 0)
+					while (y - len_int > 0)
 					{
 						write(1," ", 1);
 						y--;
+					}
+				}
+				else 
+				{
+					while (len_int !=  tampon)
+					{
+						write(1," ", 1);
+						len_int--;
 					}
 				}
 			}

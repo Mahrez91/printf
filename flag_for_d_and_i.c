@@ -56,7 +56,7 @@ int		ft_flag_tiret(int i, const char *s,int nombre_charact_int)
 			if (nombre_charact_int < 0)
 			{
 				dest = ft_itoa(nombre_charact_int * (-1));
-				len_int = ft_strlen(dest) +1 ;
+				len_int = ft_strlen(dest) + 1;
 			}
 			else 
 			{
@@ -70,10 +70,21 @@ int		ft_flag_tiret(int i, const char *s,int nombre_charact_int)
 			{
 				if (tampon > len_int)
 				{
-					while (y - tampon > 1)
+					if (nombre_charact_int < 0)
 					{
-						write(1," ", 1);
-						y--;
+						while (y - tampon > 1)
+						{
+							write(1," ", 1);
+							y--;
+						}
+					}
+					else
+					{
+						while (y - tampon > 0)
+						{
+							write(1," ", 1);
+							y--;
+						}
 					}
 				}
 				else
@@ -285,10 +296,21 @@ int		ft_flag_zero(int i, const char *s,int nombre_charact_int)
 			{
 				if (tampon > len_int)
 				{
-					while (y - tampon > 1)
+					if (nombre_charact_int < 0)
 					{
-						write(1," ", 1);
-						y--;
+						while (y - tampon > 1)
+						{
+							write(1," ", 1);
+							y--;
+						}
+					}
+					else
+					{
+						while (y - tampon > 0)
+						{
+							write(1," ", 1);
+							y--;
+						}
 					}
 				}
 				else

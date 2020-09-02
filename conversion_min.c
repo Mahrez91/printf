@@ -68,7 +68,7 @@ char	*ft_write_itoa(char *s)
 	return (s);
 }  
 
-char		*ft_itoa_base_min(unsigned int n)
+char		*ft_itoa_base_min(long n)
 {
 	char *alpha;
 	char *str;
@@ -84,9 +84,7 @@ char		*ft_itoa_base_min(unsigned int n)
 		return (str);
 	}
 	if (n < 0)
-	{
 		n = 4294967296 - (-1 * n);
-	}
 	while (n > 0)
 	{
 		str[i] = alpha[n % 16];
