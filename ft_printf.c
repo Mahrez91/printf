@@ -87,12 +87,15 @@ int		ft_printf(const char *s, ...)
 					i = ft_print_for_x_min(va_arg(list,unsigned int), s, i + 1);
 					i = i + 1;
 			}
-			if(s[i +1] == 'X')
+			if(s[i + 1] == 'X')
 			{
 				i = ft_print_for_x_maj(va_arg(list,unsigned int), s, i + 1);
 				i = i + 1;			
 			}
-			
+			if(s[i + 1] == 'p')
+			{
+				i = ft_print_for_p(va_arg(list,void *), s, i + 1);
+			}
 		}
 		if (s[i] != '\0')
 		{
@@ -138,7 +141,7 @@ int main()
 
 	printf("\n\n----------UNSIGNED-INT-x----------\n\n");
 
- 	ft_printf("%25p ||\n", &ptr);
-	printf("%25p ||" , &ptr);
+ 	ft_printf("%25p || %5p || %p ||\n", ptr, ptr, ptr);
+	printf("%25p || %5p || %p ||" , ptr, ptr, ptr );
 	
 }

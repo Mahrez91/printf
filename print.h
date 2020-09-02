@@ -47,6 +47,7 @@ int				ft_flag_zero_u(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_print_for_u(unsigned int nombre_charact_int, const char *s, int i);
 int				ft_flag_largeur_p(int i, const char *s,void * nombre_charact_int);
 int				ft_flag_tiret_p(int i, const char *s,void * nombre_charact_int);
+int				ft_flag_p(void * nombre_charact_int, int i);
 int				ft_print_for_p(void * nombre_charact_int, const char *s, int i);
 int				ft_atoi(const char *nptr);
 char			*ft_itoa(int n);
