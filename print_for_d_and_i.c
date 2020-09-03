@@ -63,9 +63,12 @@ int		ft_int(int n)
 	}
 }
 
-int		ft_print_for_d_and_i(int nombre_charact_int, const char *s, int i)
+int		ft_print_for_d_and_i(int etoile, const char *s, int i, int nombre_charact_int)
 {
-	if (s[i] == '-')
+	int c;
+
+	c = 1;
+	if (s[i] == '-' && s[i+1] != '*')
 	{
 		i = ft_flag_tiret(i + 1, s, nombre_charact_int) + 1;
 	}
@@ -73,13 +76,38 @@ int		ft_print_for_d_and_i(int nombre_charact_int, const char *s, int i)
 	{
 		i = ft_flag_largeur(i, s, nombre_charact_int) + 1;
 	}
-	if (s[i] == '.' )
+	if (s[i] == '.' && s[i+1] != '*')
 	{
 		i = ft_flag_point(i + 1, s, nombre_charact_int) + 1;
 	}
 	if (s[i] == '0')
 	{
-		i = ft_flag_zero(i + 1, s, nombre_charact_int) + 1;
+		while (s[c] == '0')
+		{
+			c++;
+		}
+		if (s[c] == '*')
+		{
+			i = ft_flag_etoile_zero(c, nombre_charact_int, etoile) + 2;
+		}
+		else
+		{
+			i = ft_flag_zero(i + 1, s, nombre_charact_int) + 1;
+		}
+	}
+	if (s[i] == '*')
+	{
+		i = ft_flag_etoile(i + 1, nombre_charact_int, etoile) +1;
+	}
+	if (s[i] == '-' && s[i + 1] == '*')
+	{
+		i = ft_ecriture_tiret(i, etoile, nombre_charact_int) + 1;
+	}
+	if (s[i] == '.' && s[i + 1] == '*' )
+	{
+		if (etoile < 0)
+			etoile = 1;
+		i = ft_flag_etoile_zero(c, nombre_charact_int, etoile) + 3;
 	}
 	return (i);
 }

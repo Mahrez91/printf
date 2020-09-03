@@ -8,6 +8,8 @@ int		ft_ecriture_tiret_u(int i, int y, unsigned int nombre_charact_int)
 	count = ft_int_pos(nombre_charact_int);
 	i = i + 2;
 
+	if (y < 0)
+		y = y *(-1);
 	if (y >= count)
 	{
 		y = y - count;
@@ -92,11 +94,19 @@ int		ft_flag_tiret_u(int i, const char *s,unsigned int nombre_charact_int)
 	ft_ecriture_tiret_u(i, y, nombre_charact_int);
 	return (i);
 }
+
 int		ft_ecriture_largeur_u(int i, int y,unsigned int nombre_charact_int, int len_int)
 {	
+	if (y < 0)
+	{
+		ft_ecriture_tiret(i, y, nombre_charact_int);
+		return (i + 2);
+	}
 	if (y > len_int)
 	{
 		y = y - len_int;
+		if (nombre_charact_int == 0)
+			y--;
 		while(y > 0)
 			{
 				write(1," ",1);
@@ -149,9 +159,16 @@ int		ft_flag_largeur_u(int i, const char *s,unsigned int nombre_charact_int)
 
 int		ft_ecriture_point_and_zero_u(int i, int y, unsigned int nombre_charact_int, int len_int)
 {	
+	if (y < 0)
+	{
+		ft_ecriture_tiret(i, y, nombre_charact_int);
+		return (i + 2);
+	}
 	if (y > len_int)
 	{
 		y = y - len_int;
+		if (nombre_charact_int == 0)
+			y--;
 		while(y > 0)
 		{
 			write(1,"0",1);
@@ -282,5 +299,36 @@ int		ft_flag_zero_u(int i, const char *s,unsigned int nombre_charact_int)
 	dest = ft_itoa_for_u(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	ft_ecriture_point_and_zero_u(i, y, nombre_charact_int, len_int);
+	return (i);
+}
+
+int		ft_flag_etoile_u(int etoile, int i,unsigned int nombre_charact_int)
+{
+	char *dest = NULL; 
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_for_u(nombre_charact_int);
+	printf("%s \n", dest);
+	nombre_charact_int = ft_conversion(nombre_charact_int);
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_for_u(nombre_charact_int);
+	printf("%s \n", dest);
+	len_int = ft_strlen(dest);
+	ft_ecriture_largeur_u(i, etoile, nombre_charact_int, len_int);
+	return (i);
+}
+
+int		ft_flag_etoile_zero_u(int etoile, int i, unsigned int nombre_charact_int)
+{
+	char *dest = NULL;
+	int len_int;
+
+	nombre_charact_int = ft_conversion(nombre_charact_int);
+	printf("%u \n", nombre_charact_int);
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_for_u(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_point_and_zero_u(i, etoile, nombre_charact_int, len_int);
 	return (i);
 }

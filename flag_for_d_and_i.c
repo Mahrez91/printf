@@ -8,6 +8,8 @@ int		ft_ecriture_tiret(int i, int y, int nombre_charact_int)
 	count = ft_int(nombre_charact_int);
 	i = i + 2;
 	
+	if (y < 0)
+		y = y *(-1);
 	if (y >= count)
 	{
 		y = y - count + 1;
@@ -118,6 +120,13 @@ int		ft_flag_tiret(int i, const char *s,int nombre_charact_int)
 
 int		ft_ecriture_largeur( int i, int y, int nombre_charact_int, int len_int)
 {	
+	if (y < 0)
+	{
+		ft_ecriture_tiret(i, y, nombre_charact_int);
+		return (i + 2);
+	}
+	if (nombre_charact_int == 0)
+		y--;
 	if (y > len_int)
 	{
 		y = y - len_int;
@@ -180,6 +189,11 @@ int		ft_flag_largeur(int i, const char *s,int nombre_charact_int)
 
 int		ft_ecriture_point_and_zero(int i, int y, int nombre_charact_int, int len_int)
 {	
+	if (y < 0)
+	{
+		ft_ecriture_tiret(i, y, nombre_charact_int);
+		return (i + 2);
+	}
 	if (nombre_charact_int < 0)
 	{	
 		write(1, "-", 1);
@@ -194,7 +208,8 @@ int		ft_ecriture_point_and_zero(int i, int y, int nombre_charact_int, int len_in
 			y--;
 		}
 	}
-	ft_int(nombre_charact_int);
+	if (nombre_charact_int != 0)
+		ft_int(nombre_charact_int);
 	i = i + 2;
 	return i;
 }
@@ -357,5 +372,45 @@ int		ft_flag_zero(int i, const char *s,int nombre_charact_int)
 		len_int = ft_strlen(dest);
 	}
 	ft_ecriture_point_and_zero(i, y, nombre_charact_int, len_int);
+	return (i);
+}
+
+int		ft_flag_etoile(int i, int nombre_charact_int, int etoile)
+{
+	char *dest = NULL; 
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	if (nombre_charact_int < 0)
+	{
+		dest = ft_itoa(nombre_charact_int * (-1));
+		len_int = ft_strlen(dest) +1 ;
+	}
+	else 
+	{
+		dest = ft_itoa(nombre_charact_int);
+		len_int = ft_strlen(dest);
+	}
+	ft_ecriture_largeur(i, etoile, nombre_charact_int, len_int);
+	return (i);
+}
+
+int		ft_flag_etoile_zero(int i,int nombre_charact_int ,int etoile)
+{
+	char *dest = NULL;
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	if (nombre_charact_int < 0)
+	{
+		dest = ft_itoa(nombre_charact_int * (-1));
+		len_int = ft_strlen(dest) + 1;
+	}
+	else
+	{
+		dest = ft_itoa(nombre_charact_int);
+		len_int = ft_strlen(dest);
+	}
+	ft_ecriture_point_and_zero(i, etoile, nombre_charact_int, len_int);
 	return (i);
 }

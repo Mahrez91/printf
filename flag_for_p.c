@@ -7,11 +7,12 @@ int		ft_ecriture_tiret_p(int i, int y, char *dest, int len_int)
 	write(1, "0x", 2);
 	ft_putstr(dest);
 	i = i + 2;
-
+	if (y < 0)
+		y = y *(-1);
 	if (y >= len_int)
 	{
 		y = y - len_int;
-		while (y >= 0)
+		while (y > 0)
 		{
 
 			write(1," ",1);
@@ -52,6 +53,11 @@ int		ft_flag_tiret_p(int i, const char *s,void * nombre_charact_int)
 
 int		ft_ecriture_largeur_p( int i, int y, char *dest, int len_int)
 {	
+	if (y < 0)
+	{
+		ft_ecriture_tiret_p(i, y, dest, len_int);
+		return (i + 2);
+	}
 	if (y > len_int)
 	{
 		y = y - len_int;
@@ -99,5 +105,31 @@ int		ft_flag_p(void * nombre_charact_int, int i)
 	dest = ft_itoa_base_min((intptr_t)nombre_charact_int);
 	write(1, "0x", 2);
 	ft_putstr(dest);
+	return (i);
+}
+
+int		ft_flag_etoile_p(int i, int etoile, void * nombre_charact_int)
+{
+	char *dest = NULL; 
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_base_min((intptr_t)nombre_charact_int);
+	len_int = ft_strlen(dest) + 2;
+	ft_ecriture_largeur_p(i, etoile, dest, len_int);
+	return (i);
+}
+
+int		ft_flag_etoile_tiret_p(int etoile, int i,void * nombre_charact_int)
+{
+	char *dest = NULL;
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_base_min((intptr_t)nombre_charact_int);
+	len_int = ft_strlen(dest) + 2;
+	ft_ecriture_tiret_p(i, etoile, dest, len_int);
+	if (etoile > len_int)
+		i++;
 	return (i);
 }
