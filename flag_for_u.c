@@ -175,7 +175,8 @@ int		ft_ecriture_point_and_zero_u(int i, int y, unsigned int nombre_charact_int,
 			y--;
 		}
 	}
-	ft_int_for_u(nombre_charact_int);
+	if (nombre_charact_int != 0)
+		ft_int_for_u(nombre_charact_int);
 	i = i + 2;
 	return i;
 }
@@ -306,14 +307,10 @@ int		ft_flag_etoile_u(int etoile, int i,unsigned int nombre_charact_int)
 {
 	char *dest = NULL; 
 	int len_int;
-
-	dest = malloc(sizeof(char) * 3);
-	dest = ft_itoa_for_u(nombre_charact_int);
-	printf("%s \n", dest);
+	
 	nombre_charact_int = ft_conversion(nombre_charact_int);
 	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_for_u(nombre_charact_int);
-	printf("%s \n", dest);
 	len_int = ft_strlen(dest);
 	ft_ecriture_largeur_u(i, etoile, nombre_charact_int, len_int);
 	return (i);
@@ -325,10 +322,10 @@ int		ft_flag_etoile_zero_u(int etoile, int i, unsigned int nombre_charact_int)
 	int len_int;
 
 	nombre_charact_int = ft_conversion(nombre_charact_int);
-	printf("%u \n", nombre_charact_int);
 	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_for_u(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	ft_ecriture_point_and_zero_u(i, etoile, nombre_charact_int, len_int);
 	return (i);
 }
+

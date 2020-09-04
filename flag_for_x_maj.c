@@ -317,3 +317,39 @@ int		ft_flag_zero_x_maj(int i, const char *s,int nombre_charact_int)
 	ft_ecriture_point_and_zero_x_maj( i, y, dest, len_int);
 	return (i);
 }
+
+int		ft_flag_etoile_x_maj(int etoile, int i, unsigned int nombre_charact_int)
+{
+	char *dest = NULL; 
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_base_maj(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_largeur_x_maj( i, etoile , dest, len_int);
+	return (i);
+}
+
+int		ft_flag_tiret_etoile_x_maj(int etoile, int i, unsigned int nombre_charact_int)
+{
+	char *dest = NULL;
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_base_maj(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_tiret_x_maj(i, etoile, dest, len_int);
+	return (i);
+}
+
+int		ft_flag_etoile_zero_x_maj(int etoile, int i, int nombre_charact_int)
+{
+	char *dest = NULL;
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_base_maj(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_point_and_zero_x_maj( i, etoile, dest, len_int);
+	return (i);
+}

@@ -78,3 +78,17 @@ char		*ft_itoa_for_u(unsigned int n)
 	str = ft_strrev(str);
 	return(str);
 }
+
+int	ft_conversion(unsigned int n)
+{
+	int i;
+
+	i = n;
+	if (i < 0)
+	{
+		i = n * (-1);
+		n = 4294967296 - i;
+		return(n);
+	}
+	return n;
+}

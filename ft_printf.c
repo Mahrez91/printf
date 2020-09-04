@@ -26,9 +26,9 @@ int		ft_printf(const char *s, ...)
 		if (s[i] == '%' && s[i + 1] != '%')
 		{
 			c = i;
-			if (s[i + 1] == '*' || (s[i + 1] == '-' && s[i + 2] == '*') || s[i + 1] == '0' || (s[i + 1] == '.' && s[i + 2] == '*') )
+			if (s[i + 1] == '*' || (s[i + 1] == '-' && s[i + 2] == '*') ||  (s[i + 1] == '.' && s[i + 2] == '*') )
 			{
-				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 'p' && s[c] != 's' && s[c] != 'u')
+				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 'p' && s[c] != 's' && s[c] != 'u' && s[c] != 'X')
 				{	
 					c++;
 				}
@@ -52,8 +52,61 @@ int		ft_printf(const char *s, ...)
 				{
 					i = ft_print_for_u(va_arg(list, int), s, i + 1, va_arg(list,unsigned int));
 				}
+				if(s[c] == 'X')
+				{
+					i = ft_print_for_x_maj(va_arg(list, int), s, i + 1, va_arg(list,unsigned int));
+				}
 			}
-			if (s[i + 1] == '-' || s[i + 1] == '.' || (s[i + 1] >= '0' && s[i + 1] <= '9'))
+			if (s[i + 1] == '0' )
+			{
+				c = c + 1;
+				while (s[c] == '0')
+					c++;
+				if (s[c] == '*')
+				{
+					if (s[c + 1] == 'd' || s[c] == 'i')
+					{
+						i = ft_print_for_d_and_i(va_arg(list, int), s, i + 1,  va_arg(list, int));
+					}
+					if(s[c + 1] == 'u')
+					{
+						i = ft_print_for_u(va_arg(list, int) , s, i + 1, va_arg(list,unsigned int));
+					}
+					if(s[c + 1] == 'p')
+					{
+						i = ft_print_for_p(va_arg(list, int), s, i + 1, va_arg(list,void *));
+					}
+					if(s[c + 1] == 'X')
+					{
+						i = ft_print_for_x_maj(va_arg(list, int), s, i + 1, va_arg(list,unsigned int));
+					}
+				}
+				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'u' && s[c] != 'p' && s[c] != 'x' && s[c] != 'X')
+				{
+					c++;
+				}
+				if (s[c] == 'd' || s[c] == 'i')
+				{
+					i = ft_print_for_d_and_i(0, s, i + 1,  va_arg(list, int));
+				}
+				if(s[c] == 'u')
+				{
+					i = ft_print_for_u(0 , s, i + 1, va_arg(list,unsigned int));
+				}
+				if(s[c] == 'p')
+				{
+					i = ft_print_for_p(0, s, i + 1, va_arg(list,void *));
+				}
+				if(s[c] == 'x')
+				{
+					i = ft_print_for_x_min(va_arg(list,unsigned int), s, i + 1);
+				}
+				if(s[c] == 'X')
+				{
+					i = ft_print_for_x_maj(0 , s, i + 1, va_arg(list,unsigned int));
+				}
+			}
+			if (s[i + 1] == '-' || s[i + 1] == '.' || (s[i + 1] > '0' && s[i + 1] <= '9'))
 			{	
 				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 's' && s[c] != 'u' && s[c] != 'p' && s[c] != 'x' && s[c] != 'X')
 				{	
@@ -79,13 +132,9 @@ int		ft_printf(const char *s, ...)
 				{
 					i = ft_print_for_p(0, s, i + 1, va_arg(list,void *));
 				}
-				if(s[c] == 'x')
-				{
-					i = ft_print_for_x_min(va_arg(list,unsigned int), s, i + 1);
-				}
 				if(s[c] == 'X')
 				{
-					i = ft_print_for_x_maj(va_arg(list,unsigned int), s, i + 1);
+					i = ft_print_for_x_maj(0 , s, i + 1, va_arg(list,unsigned int));
 				}
 			}
 			if (s[i + 1] == 'd' || s[i + 1] == 'i')
@@ -115,7 +164,7 @@ int		ft_printf(const char *s, ...)
 			}
 			if(s[i + 1] == 'X')
 			{
-				i = ft_print_for_x_maj(va_arg(list,unsigned int), s, i + 1);
+				i = ft_print_for_x_maj(0 , s, i + 1, va_arg(list,unsigned int));
 				i = i + 1;			
 			}
 			if(s[i + 1] == 'p')
@@ -138,8 +187,13 @@ int main()
 {	
 	//char s2[] = "salut ca va bien";
 	//int *ptr = 0;
-	printf("\n\n----------INT----------\n\n");
 
-	ft_printf("%*u |\n",-14,  -40);
-	printf("%*u |\n\n",-14, -40);
+	printf("\n\n----------NUMBERS----------\n\n");
+
+
+	ft_printf("j ai %0*d\n", 10, 50);
+	printf("j ai %0*d\n\n", 10, 50);
+
+
+	
 }

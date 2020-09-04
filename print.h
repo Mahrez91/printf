@@ -16,6 +16,7 @@ int				ft_int_pos(unsigned int n);
 int				ft_int_for_u(unsigned int n);
 int				ft_conversion(unsigned int n);
 int				ft_strlen(char *s);
+int				ft_conversion(unsigned int n);
 int				ft_flag_tiret(int i, const char *s,int nombre_charact_int);
 int				ft_flag_largeur(int i, const char *s,int nombre_charact_int);
 int				ft_flag_zero(int i, const char *s,int nombre_charact_int);
@@ -47,14 +48,17 @@ int				ft_flag_largeur_x_maj(int i, const char *s,unsigned int nombre_charact_in
 int				ft_flag_zero_x_maj(int i, const char *s,int nombre_charact_int);
 int				ft_flag_point_x_maj(int i, const char *s,int nombre_charact_int);
 char			*ft_flag_x_maj(unsigned int n);
-int				ft_print_for_x_maj(unsigned int nombre_charact_int, const char *s, int i);
+int				ft_flag_etoile_x_maj(int etoile, int i, unsigned int nombre_charact_int);
+int				ft_flag_tiret_etoile_x_maj(int etoile, int i, unsigned int nombre_charact_int);
+int				ft_flag_etoile_zero_x_maj(int etoile, int i, int nombre_charact_int);
+int				ft_print_for_x_maj(int etoile, const char *s, int i, unsigned int nombre_charact_int);
 int				ft_flag_tiret_u(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_flag_largeur_u(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_flag_point_u(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_flag_zero_u(int i, const char *s,unsigned int nombre_charact_int);
 int				ft_flag_etoile_u(int etoile, int i,unsigned int nombre_charact_int);
 int				ft_ecriture_tiret_u(int i, int y, unsigned int nombre_charact_int);
-int		ft_flag_etoile_zero_u(int etoile, int i, unsigned int nombre_charact_int);
+int				ft_flag_etoile_zero_u(int etoile, int i, unsigned int nombre_charact_int);
 int				ft_print_for_u(int etoile, const char *s, int i, unsigned int nombre_charact_int);
 int				ft_flag_largeur_p(int i, const char *s,void * nombre_charact_int);
 int				ft_flag_tiret_p(int i, const char *s,void * nombre_charact_int);
@@ -73,3 +77,181 @@ char		    *ft_itoa_base_pointeur(unsigned int n);
 void	        ft_putstr(char *str);
 
 #endif
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: idhiba <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/01 15:06:44 by idhiba            #+#    #+#             */
+/*   Updated: 2019/12/01 15:06:46 by idhiba           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*#include "print.h"
+
+int		ft_printf(const char *s, ...)
+{
+	va_list list;
+	int i;
+	int c;
+
+	i = 0;
+	c = 0;
+	va_start(list, s);
+	while (s[i] != '\0')
+	{
+		if (s[i] == '%' && s[i + 1] != '%')
+		{
+			c = i;
+			if (s[i + 1] == '*' || (s[i + 1] == '-' && s[i + 2] == '*') || (s[i + 1] == '.' && s[i + 2] == '*') )
+			{
+				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 'p' && s[c] != 's' && s[c] != 'u')
+				{	
+					c++;
+				}
+				if (s[c] == 'd'|| s[c] == 'i')
+				{
+					i = ft_print_for_d_and_i(va_arg(list, int), s, i + 1,  va_arg(list, int));
+				}
+				if (s[c] == 'c')
+				{
+					i = ft_print_for_c(va_arg(list, int), s, i + 1, va_arg(list, int));
+				}
+				if(s[c] == 'p')
+				{
+					i = ft_print_for_p(va_arg(list,int), s, i + 1, va_arg(list,void *));
+				}
+				if(s[c] == 's')
+				{
+					i = ft_print_for_s(va_arg(list, int), s, i + 1,va_arg(list, char *));
+				}
+				if(s[c] == 'u')
+				{
+					i = ft_print_for_u(va_arg(list, int), s, i + 1, va_arg(list,unsigned int));
+				}
+			}
+			if (s[i + 1] == '0' )
+			{
+				while (s[c] == 0)
+					c++;
+				if (s[c] == 'd' || s[c] == 'i')
+				{
+					i = ft_print_for_d_and_i(0, s, i + 1,  va_arg(list, int));
+				}
+				if(s[c] == 'u')
+				{
+					i = ft_print_for_u(0 , s, i + 1, va_arg(list,unsigned int));
+				}
+				if(s[c] == 'p')
+				{
+					i = ft_print_for_p(0, s, i + 1, va_arg(list,void *));
+				}
+				if (s[c] == '*')
+				{
+					if (s[c + 1] == 'd' || s[c] == 'i')
+					{
+						i = ft_print_for_d_and_i(va_arg(list, int), s, i + 1,  va_arg(list, int));
+					}
+					if(s[c + 1] == 'u')
+					{
+						i = ft_print_for_u(va_arg(list, int) , s, i + 1, va_arg(list,unsigned int));
+					}
+					if(s[c + 1] == 'p')
+					{
+						i = ft_print_for_p(va_arg(list, int), s, i + 1, va_arg(list,void *));
+					}
+				}
+			}
+			if (s[i + 1] == '-' || s[i + 1] == '.' || (s[i + 1] > '0' && s[i + 1] <= '9'))
+			{	
+				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 's' && s[c] != 'u' && s[c] != 'p' && s[c] != 'x' && s[c] != 'X')
+				{	
+					c++;
+				}
+				if (s[c] == 'd'|| s[c] == 'i')
+				{
+					i = ft_print_for_d_and_i(0, s, i + 1,  va_arg(list, int));
+				}
+				if(s[c] == 'c')
+				{
+					i = ft_print_for_c(0, s, i + 1, va_arg(list, int));
+				}
+				if(s[c] == 's')
+				{
+					i = ft_print_for_s(0, s, i + 1,va_arg(list, char *));
+				}
+				if(s[c] == 'u')
+				{
+					i = ft_print_for_u(0 , s, i + 1, va_arg(list,unsigned int));
+				}
+				if(s[c] == 'p')
+				{
+					i = ft_print_for_p(0, s, i + 1, va_arg(list,void *));
+				}
+				if(s[c] == 'x')
+				{
+					i = ft_print_for_x_min(va_arg(list,unsigned int), s, i + 1);
+				}
+				if(s[c] == 'X')
+				{
+					i = ft_print_for_x_maj(va_arg(list,unsigned int), s, i + 1);
+				}
+			}
+			if (s[i + 1] == 'd' || s[i + 1] == 'i')
+			{
+				ft_int(va_arg(list, int));
+				i = i + 2;
+			}
+			if (s[i + 1] == 'c')
+			{
+				ft_putchar(va_arg(list, int));
+				i = i + 2;
+			}
+			if (s[i + 1] == 's')
+			{
+				ft_chaine(va_arg(list, char*));
+				i = i + 2;
+			}
+			if (s[i + 1] == 'u')
+			{
+				ft_int_for_u(va_arg(list, unsigned int));
+				i = i + 2;
+			}
+			if(s[i + 1] == 'x')
+			{
+					i = ft_print_for_x_min(va_arg(list,unsigned int), s, i + 1);
+					i = i + 1;
+			}
+			if(s[i + 1] == 'X')
+			{
+				i = ft_print_for_x_maj(va_arg(list,unsigned int), s, i + 1);
+				i = i + 1;			
+			}
+			if(s[i + 1] == 'p')
+			{
+				i = ft_print_for_p(0, s, i + 1, va_arg(list,void *));
+			}
+		}
+		if (s[i] != '\0')
+		{
+			write(1, &s[i], 1);
+			i++;
+		}	
+	}
+	va_end(list);
+	printf("\n");
+	return (0);
+}
+
+int main()
+{	
+	//char s2[] = "salut ca va bien";
+	//int *ptr = 0;
+	printf("\n\n----------INT----------\n\n");
+
+	ft_printf("j'ai %00d |\n", 500);
+	printf("j'ai %00d |\n",  500);
+}*/
