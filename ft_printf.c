@@ -191,7 +191,7 @@ int main()
 	printf("\n\n----------NUMBERS----------\n\n");
 
 
-	ft_printf("j ai %0*d\n", 10, 50);
-	printf("j ai %0*d\n\n", 10, 50);
+	ft_printf("j ai %0d\n", 10, 50);
+	printf("j ai %0d\n\n", 10, 50);
 
 }
