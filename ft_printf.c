@@ -140,6 +140,6 @@ int main()
 	//int *ptr = 0;
 	printf("\n\n----------INT----------\n\n");
 
-	ft_printf("%*u |\n",-14,  -40);
-	printf("%*u |\n\n",-14, -40);
+	ft_printf("%*u |\n",-14, 40);
+	printf("%*u |\n\n",-14, 40);
 }
