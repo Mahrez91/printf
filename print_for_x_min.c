@@ -1,9 +1,18 @@
 #include "Struct_d_and_i.h"
 #include "print.h"
 
-int		ft_print_for_x_min(unsigned int nombre_charact_int, const char *s, int i)
+int		ft_print_for_x_min(int etoile, const char *s, int i, unsigned int nombre_charact_int)
 {
-	if (s[i] == '-')
+	int c;
+
+	c =  i;
+	if(s[i] == 'x')
+	{
+		if (nombre_charact_int == 0)
+				write(1, "0", 1);
+		ft_flag_x_min(nombre_charact_int);
+	}
+	if (s[i] == '-' && s[i + 1] != '*')
 	{
 		i = ft_flag_tiret_x(i + 1, s, nombre_charact_int) + 1;
 	}
@@ -11,17 +20,63 @@ int		ft_print_for_x_min(unsigned int nombre_charact_int, const char *s, int i)
 	{
 		i = ft_flag_largeur_x(i, s, nombre_charact_int) + 1;
 	}
-	if (s[i] == '.')
+	if (s[i] == '.' && s[i + 1] != '*')
 	{
 		i = ft_flag_point_x(i + 1, s, nombre_charact_int) + 1;
 	}
 	if (s[i] == '0')
 	{
-		i = ft_flag_zero_x(i + 1, s, nombre_charact_int) + 1;
+		while (s[c] == '0')
+		{
+			c++;
+		}
+		if (s[c] == '*')
+		{
+			if (etoile < 0 )
+			{
+				i = ft_flag_tiret_etoile_x_min(etoile * (-1), i + 1, nombre_charact_int) + 1;
+			}
+			else
+			{
+				i = ft_flag_etoile_zero_x_min(etoile, i + 1, nombre_charact_int) + 1;
+			}
+		}
+		else
+		{
+			i = ft_flag_zero_x(i + 1, s, nombre_charact_int) + 1;
+		}
 	}
-	if(s[i] == 'x')
+	if (s[i] == '*')
 	{
-		ft_flag_x_min(nombre_charact_int);
+		if (etoile < 0 )
+		{
+			i = ft_flag_tiret_etoile_x_min(etoile * (-1), i + 1, nombre_charact_int) + 1;
+		}
+		else
+		{
+			i = ft_flag_etoile_x_min(etoile, i + 1, nombre_charact_int) + 1;
+		}	
+	}
+	if (s[i] == '-' && s[i + 1] == '*')
+	{
+		if (etoile < 0 )
+		{
+			i = ft_flag_tiret_etoile_x_min(etoile * (-1), i + 1, nombre_charact_int) + 2;
+		}
+		else
+		{
+			i = ft_flag_tiret_etoile_x_min(etoile, i + 1, nombre_charact_int) + 2;
+		}
+	}
+	if (s[i] == '.' && s[i + 1] == '*' )
+	{
+		if (nombre_charact_int != 0 || etoile != 0)
+		{
+			if (etoile < 0)
+				etoile = 1;
+			i = ft_flag_etoile_point_x_min(etoile , c, nombre_charact_int);
+		}
+		i = i + 3;
 	}
 	return (i);
 }

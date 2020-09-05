@@ -69,6 +69,8 @@ int		ft_print_for_u(int etoile, const char *s, int i, unsigned int nombre_charac
 		}
 		else
 		{
+			if (nombre_charact_int == 0)
+				write(1, "0", 1);
 			i = ft_flag_zero_u(i + 1, s, nombre_charact_int) + 1;
 		}
 	}

@@ -8,6 +8,8 @@ int		ft_print_for_x_maj(int etoile, const char *s, int i, unsigned int nombre_ch
 	c = i;
 	if(s[i] == 'X')
 	{
+		if (nombre_charact_int == 0)
+				write(1, "0", 1);
 		ft_flag_x_maj(nombre_charact_int);
 	}
 	if (s[i] == '-' && s[i + 1] != '*')
@@ -72,7 +74,7 @@ int		ft_print_for_x_maj(int etoile, const char *s, int i, unsigned int nombre_ch
 		{
 			if (etoile < 0)
 				etoile = 1;
-			i = ft_flag_etoile_zero_x_maj(etoile, c, nombre_charact_int);
+			i = ft_flag_etoile_point_x_maj(etoile, c, nombre_charact_int);
 		}
 		i = i + 3;
 	}

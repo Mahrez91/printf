@@ -95,18 +95,15 @@ int		ft_flag_tiret_x(int i, const char *s,unsigned int nombre_charact_int)
 	return (i);
 }
 
-int		ft_ecriture_largeur_x(const char *s, int i, int y, char *dest, int len_int)
+int		ft_ecriture_largeur_x( int i, int y, char *dest, int len_int)
 {	
 	if (y > len_int)
 	{
 		y = y - len_int;
-		if (s[i] == 'x')
+		while(y > 0)
 		{
-			while(y > 0)
-			{
-				write(1," ",1);
-				y--;
-			}
+			write(1," ",1);
+			y--;
 		}
 	}
 	ft_putstr(dest);
@@ -148,11 +145,11 @@ int		ft_flag_largeur_x(int i, const char *s,unsigned int nombre_charact_int)
 	y = ft_atoi(tmp);
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
-	ft_ecriture_largeur_x(s, i, y, dest, len_int);
+	ft_ecriture_largeur_x( i, y, dest, len_int);
 	return (i);
 }
 
-int		ft_ecriture_point_and_zero_x(int i, int y, char *dest, int len_int)
+int		ft_ecriture_zero_x(int i, int y, char *dest, int len_int, int nombre_charact_int)
 {	
 	if (y > len_int)
 	{
@@ -163,7 +160,36 @@ int		ft_ecriture_point_and_zero_x(int i, int y, char *dest, int len_int)
 				y--;
 			}	
 	}
-	ft_putstr(dest);
+	if (nombre_charact_int != 0)
+	{	
+		ft_putstr(dest);
+		return (i + 2);
+	}
+	if (nombre_charact_int == 0)
+		write(1, "0", 1);
+	i = i + 2;
+	return i;
+}
+
+int		ft_ecriture_point_x(int i, int y, char *dest, int len_int, int nombre_charact_int)
+{	
+	int tmp;
+
+	tmp = y;
+	if (y > len_int)
+	{
+		y = y - len_int;
+		while(y > 0)
+			{
+				write(1,"0",1);
+				y--;
+			}	
+	}
+	if (nombre_charact_int != 0 || tmp != 0)
+	{	
+		ft_putstr(dest);
+		return (i + 2);
+	}
 	i = i + 2;
 	return i;
 }
@@ -188,7 +214,7 @@ int		ft_flag_point_x(int i, const char *s,int nombre_charact_int)
 	y = ft_atoi(tmp);
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
-	ft_ecriture_point_and_zero_x( i, y, dest, len_int);
+	ft_ecriture_point_x( i, y, dest, len_int, nombre_charact_int);
 	return (i);
 }
 
@@ -290,7 +316,7 @@ int		ft_flag_zero_x(int i, const char *s,int nombre_charact_int)
 			}
 			else
 			{
-				ft_ecriture_point_and_zero_x(y, tampon, dest, len_int);
+				ft_ecriture_point_x(y, tampon, dest, len_int, nombre_charact_int);
 				while (s[i] != 'x')
 				{
 					i++;
@@ -306,7 +332,7 @@ int		ft_flag_zero_x(int i, const char *s,int nombre_charact_int)
 		}
 		y++;
 	} 
-	y = i;
+	y = i - 1;
 	while (s[i] >= '0' && s[i] <= '9')
 	{
 		decalage.nombre_d_espace++;
@@ -316,6 +342,54 @@ int		ft_flag_zero_x(int i, const char *s,int nombre_charact_int)
 	y = ft_atoi(tmp);
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
-	ft_ecriture_point_and_zero_x( i, y, dest, len_int);
+	ft_ecriture_zero_x( i, y, dest, len_int, nombre_charact_int);
+	return (i);
+}
+
+int		ft_flag_etoile_x_min(int etoile, int i, unsigned int nombre_charact_int)
+{
+	char *dest = NULL; 
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_base_min(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_largeur_x( i, etoile , dest, len_int);
+	return (i);
+}
+
+int		ft_flag_tiret_etoile_x_min(int etoile, int i, unsigned int nombre_charact_int)
+{
+	char *dest = NULL;
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_base_min(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_tiret_x(i, etoile, dest, len_int);
+	return (i);
+}
+
+int		ft_flag_etoile_zero_x_min(int etoile, int i, int nombre_charact_int)
+{
+	char *dest = NULL;
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_base_min(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_zero_x( i, etoile, dest, len_int, nombre_charact_int);
+	return (i);
+}
+
+int		ft_flag_etoile_point_x_min(int etoile, int i, int nombre_charact_int)
+{
+	char *dest = NULL;
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_base_min(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_point_x( i, etoile, dest, len_int, nombre_charact_int);
 	return (i);
 }

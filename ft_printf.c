@@ -28,7 +28,7 @@ int		ft_printf(const char *s, ...)
 			c = i;
 			if (s[i + 1] == '*' || (s[i + 1] == '-' && s[i + 2] == '*') ||  (s[i + 1] == '.' && s[i + 2] == '*') )
 			{
-				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 'p' && s[c] != 's' && s[c] != 'u' && s[c] != 'X')
+				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'c' && s[c] != 'p' && s[c] != 's' && s[c] != 'u' && s[c] != 'X' && s[c] != 'x')
 				{	
 					c++;
 				}
@@ -56,6 +56,10 @@ int		ft_printf(const char *s, ...)
 				{
 					i = ft_print_for_x_maj(va_arg(list, int), s, i + 1, va_arg(list,unsigned int));
 				}
+				if(s[c] == 'x')
+				{
+					i = ft_print_for_x_min(va_arg(list, int), s, i + 1, va_arg(list,unsigned int));
+				}
 			}
 			if (s[i + 1] == '0' )
 			{
@@ -80,6 +84,10 @@ int		ft_printf(const char *s, ...)
 					{
 						i = ft_print_for_x_maj(va_arg(list, int), s, i + 1, va_arg(list,unsigned int));
 					}
+					if(s[c + 1] == 'x')
+					{
+						i = ft_print_for_x_min(va_arg(list, int) , s, i + 1, va_arg(list,unsigned int));
+					}
 				}
 				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'u' && s[c] != 'p' && s[c] != 'x' && s[c] != 'X')
 				{
@@ -99,7 +107,7 @@ int		ft_printf(const char *s, ...)
 				}
 				if(s[c] == 'x')
 				{
-					i = ft_print_for_x_min(va_arg(list,unsigned int), s, i + 1);
+					i = ft_print_for_x_min(0 , s, i + 1, va_arg(list,unsigned int));
 				}
 				if(s[c] == 'X')
 				{
@@ -136,6 +144,10 @@ int		ft_printf(const char *s, ...)
 				{
 					i = ft_print_for_x_maj(0 , s, i + 1, va_arg(list,unsigned int));
 				}
+				if(s[c] == 'x')
+				{
+					i = ft_print_for_x_min(0 , s, i + 1, va_arg(list,unsigned int));
+				}
 			}
 			if (s[i + 1] == 'd' || s[i + 1] == 'i')
 			{
@@ -159,8 +171,8 @@ int		ft_printf(const char *s, ...)
 			}
 			if(s[i + 1] == 'x')
 			{
-					i = ft_print_for_x_min(va_arg(list,unsigned int), s, i + 1);
-					i = i + 1;
+				i = ft_print_for_x_min(0 , s, i + 1, va_arg(list,unsigned int));
+				i = i + 1;
 			}
 			if(s[i + 1] == 'X')
 			{
@@ -191,7 +203,11 @@ int main()
 	printf("\n\n----------NUMBERS----------\n\n");
 
 
-	ft_printf("j ai %0d\n", 10, 50);
-	printf("j ai %0d\n\n", 10, 50);
+	ft_printf("%.10u ||\n", 0);
+	printf("%.10u ||\n\n", 0);
+
+	//ft_printf("%0.1x\n", 0);
+	//printf("%0.1x\n\n", 0);
+
 
 }
