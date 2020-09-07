@@ -187,13 +187,8 @@ int		ft_flag_largeur(int i, const char *s,int nombre_charact_int)
 	return (i);
 }
 
-int		ft_ecriture_point_and_zero(int i, int y, int nombre_charact_int, int len_int)
+int		ft_ecriture_zero(int i, int y, int nombre_charact_int, int len_int)
 {	
-	if (y < 0)
-	{
-		ft_ecriture_tiret(i, y, nombre_charact_int);
-		return (i + 2);
-	}
 	if (nombre_charact_int < 0)
 	{	
 		write(1, "-", 1);
@@ -202,6 +197,8 @@ int		ft_ecriture_point_and_zero(int i, int y, int nombre_charact_int, int len_in
 	if (y > len_int)
 	{
 		y = y - len_int;
+		if (nombre_charact_int == 0)
+			y--;
 		while(y > 0)
 		{
 			write(1,"0",1);
@@ -209,6 +206,35 @@ int		ft_ecriture_point_and_zero(int i, int y, int nombre_charact_int, int len_in
 		}
 	}
 	if (nombre_charact_int != 0)
+		ft_int(nombre_charact_int);
+	if (nombre_charact_int == 0)
+		write(1, "0", 1);
+	i = i + 2;
+	return i;
+}
+
+int		ft_ecriture_point(int i, int y, int nombre_charact_int, int len_int)
+{	
+	int tmp;
+
+	tmp = y;
+	if (nombre_charact_int < 0)
+	{	
+		write(1, "-", 1);
+		nombre_charact_int = nombre_charact_int * (-1); 
+	}
+	if (y > len_int)
+	{
+		y = y - len_int;
+		if (nombre_charact_int == 0)
+			y--;
+		while(y > 0)
+		{
+			write(1,"0",1);
+			y--;
+		}
+	}
+	if (nombre_charact_int != 0 || tmp != 0)
 		ft_int(nombre_charact_int);
 	i = i + 2;
 	return i;
@@ -242,7 +268,7 @@ int		ft_flag_point(int i, const char *s,int nombre_charact_int)
 		dest = ft_itoa(nombre_charact_int);
 		len_int = ft_strlen(dest);
 	}
-	ft_ecriture_point_and_zero(i, y, nombre_charact_int, len_int);
+	ft_ecriture_point(i, y, nombre_charact_int, len_int);
 	return (i);
 }
 
@@ -339,7 +365,7 @@ int		ft_flag_zero(int i, const char *s,int nombre_charact_int)
 			}
 			else
 			{
-				ft_ecriture_point_and_zero(y, tampon, nombre_charact_int, len_int);
+				ft_ecriture_point(y, tampon, nombre_charact_int, len_int);
 				while (s[i] != 'd' && s[i] != 'i')
 				{
 					i++;
@@ -371,7 +397,7 @@ int		ft_flag_zero(int i, const char *s,int nombre_charact_int)
 		dest = ft_itoa(nombre_charact_int);
 		len_int = ft_strlen(dest);
 	}
-	ft_ecriture_point_and_zero(i, y, nombre_charact_int, len_int);
+	ft_ecriture_zero(i, y, nombre_charact_int, len_int);
 	return (i);
 }
 
@@ -411,6 +437,25 @@ int		ft_flag_etoile_zero(int i,int nombre_charact_int ,int etoile)
 		dest = ft_itoa(nombre_charact_int);
 		len_int = ft_strlen(dest);
 	}
-	ft_ecriture_point_and_zero(i, etoile, nombre_charact_int, len_int);
+	ft_ecriture_zero(i, etoile, nombre_charact_int, len_int);
+	return (i);
+}
+int		ft_flag_etoile_point(int i,int nombre_charact_int ,int etoile)
+{
+	char *dest = NULL;
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	if (nombre_charact_int < 0)
+	{
+		dest = ft_itoa(nombre_charact_int * (-1));
+		len_int = ft_strlen(dest) + 1;
+	}
+	else
+	{
+		dest = ft_itoa(nombre_charact_int);
+		len_int = ft_strlen(dest);
+	}
+	ft_ecriture_point(i, etoile, nombre_charact_int, len_int);
 	return (i);
 }

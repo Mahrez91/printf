@@ -88,14 +88,10 @@ int		ft_print_for_d_and_i(int etoile, const char *s, int i, int nombre_charact_i
 		}
 		if (s[c] == '*')
 		{
-			if (nombre_charact_int == 0)
-				write(1, "0", 1);
-			i = ft_flag_etoile_zero(c, nombre_charact_int, etoile) + 2;
+			i = ft_flag_etoile_zero(c, nombre_charact_int, etoile) + 1;
 		}
 		else
 		{
-			if (nombre_charact_int == 0)
-				write(1, "0", 1);
 			i = ft_flag_zero(i + 1, s, nombre_charact_int) + 1;
 		}
 	}
@@ -109,9 +105,11 @@ int		ft_print_for_d_and_i(int etoile, const char *s, int i, int nombre_charact_i
 	}
 	if (s[i] == '.' && s[i + 1] == '*' )
 	{
+		if (nombre_charact_int < 0)
+			etoile++;
 		if (etoile < 0)
 			etoile = 1;
-		i = ft_flag_etoile_zero(c, nombre_charact_int, etoile) + 3;
+		i = ft_flag_etoile_point(c, nombre_charact_int, etoile) + 3;
 	}
 	return (i);
 }

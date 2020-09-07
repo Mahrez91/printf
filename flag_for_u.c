@@ -157,13 +157,8 @@ int		ft_flag_largeur_u(int i, const char *s,unsigned int nombre_charact_int)
 	return (i);
 }
 
-int		ft_ecriture_point_and_zero_u(int i, int y, unsigned int nombre_charact_int, int len_int)
+int		ft_ecriture_zero_u(int i, int y, unsigned int nombre_charact_int, int len_int)
 {	
-	if (y < 0)
-	{
-		ft_ecriture_tiret(i, y, nombre_charact_int);
-		return (i + 2);
-	}
 	if (y > len_int)
 	{
 		y = y - len_int;
@@ -177,6 +172,33 @@ int		ft_ecriture_point_and_zero_u(int i, int y, unsigned int nombre_charact_int,
 	}
 	if (nombre_charact_int != 0)
 		ft_int_for_u(nombre_charact_int);
+	if (nombre_charact_int == 0)
+		write(1, "0", 1);
+	i = i + 2;
+	return i;
+}
+
+int		ft_ecriture_point_u(int i, int y, unsigned int nombre_charact_int, int len_int)
+{	
+	int tmp;
+
+	tmp = y;
+	if (y > len_int)
+	{
+		y = y - len_int;
+		if (nombre_charact_int == 0)
+			y--;
+		while(y > 0)
+		{
+			write(1,"0",1);
+			y--;
+		}
+	}
+	if (nombre_charact_int != 0 || tmp != 0)
+	{	
+		ft_int_for_u(nombre_charact_int);
+		return (i + 2);
+	}
 	i = i + 2;
 	return i;
 }
@@ -202,7 +224,7 @@ int		ft_flag_point_u(int i, const char *s,unsigned int nombre_charact_int)
 	y = ft_atoi(tmp);
 	dest = ft_itoa_for_u(nombre_charact_int);
 	len_int = ft_strlen(dest);
-	ft_ecriture_point_and_zero_u(i, y, nombre_charact_int, len_int);
+	ft_ecriture_point_u(i, y, nombre_charact_int, len_int);
 	return (i);
 }
 
@@ -273,7 +295,7 @@ int		ft_flag_zero_u(int i, const char *s,unsigned int nombre_charact_int)
 			}
 			else
 			{
-				ft_ecriture_point_and_zero_u(y, tampon, nombre_charact_int, len_int);
+				ft_ecriture_point_u(y, tampon, nombre_charact_int, len_int);
 				while (s[i] != 'u')
 				{
 					i++;
@@ -299,7 +321,7 @@ int		ft_flag_zero_u(int i, const char *s,unsigned int nombre_charact_int)
 	y = ft_atoi(tmp);
 	dest = ft_itoa_for_u(nombre_charact_int);
 	len_int = ft_strlen(dest);
-	ft_ecriture_point_and_zero_u(i, y, nombre_charact_int, len_int);
+	ft_ecriture_zero_u(i, y, nombre_charact_int, len_int);
 	return (i);
 }
 
@@ -325,7 +347,20 @@ int		ft_flag_etoile_zero_u(int etoile, int i, unsigned int nombre_charact_int)
 	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_for_u(nombre_charact_int);
 	len_int = ft_strlen(dest);
-	ft_ecriture_point_and_zero_u(i, etoile, nombre_charact_int, len_int);
+	ft_ecriture_zero_u(i, etoile, nombre_charact_int, len_int);
+	return (i);
+}
+
+int		ft_flag_etoile_point_u(int etoile, int i, unsigned int nombre_charact_int)
+{
+	char *dest = NULL;
+	int len_int;
+
+	nombre_charact_int = ft_conversion(nombre_charact_int);
+	dest = malloc(sizeof(char) * 3);
+	dest = ft_itoa_for_u(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	ft_ecriture_point_u(i, etoile, nombre_charact_int, len_int);
 	return (i);
 }
 

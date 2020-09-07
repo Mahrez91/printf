@@ -203,8 +203,8 @@ int main()
 	printf("\n\n----------NUMBERS----------\n\n");
 
 
-	ft_printf("%.10u ||\n", 0);
-	printf("%.10u ||\n\n", 0);
+	ft_printf("%0d ||\n", -10);
+	printf("%0d ||\n\n", -10);
 
 	//ft_printf("%0.1x\n", 0);
 	//printf("%0.1x\n\n", 0);

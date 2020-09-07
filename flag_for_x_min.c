@@ -161,10 +161,7 @@ int		ft_ecriture_zero_x(int i, int y, char *dest, int len_int, int nombre_charac
 			}	
 	}
 	if (nombre_charact_int != 0)
-	{	
 		ft_putstr(dest);
-		return (i + 2);
-	}
 	if (nombre_charact_int == 0)
 		write(1, "0", 1);
 	i = i + 2;
