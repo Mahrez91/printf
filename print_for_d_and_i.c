@@ -22,7 +22,7 @@ char	*ft_strlcpy(char *dst, const char *src, int n, int y)
 {
 	int	i;
 
-	i = 0;
+	i = 0; 
 	while (i < n)
 	{
 		dst[i] = src[y + 1];
@@ -63,12 +63,12 @@ int		ft_int(int n)
 	}
 }
 
-int		ft_print_for_d_and_i(int etoile, const char *s, int i, int nombre_charact_int)
+int		ft_print_for_d_and_i(int etoile,int etoile2, const char *s, int i, int nombre_charact_int)
 {
 	int c;
 
 	c = i;
-	if (s[i] == '-' && s[i+1] != '*')
+	if (s[i] == '-' && s[i+1] != '*' && s[i + 3] != '*' )
 	{
 		i = ft_flag_tiret(i + 1, s, nombre_charact_int) + 1;
 	}
@@ -80,30 +80,56 @@ int		ft_print_for_d_and_i(int etoile, const char *s, int i, int nombre_charact_i
 	{
 		i = ft_flag_point(i + 1, s, nombre_charact_int) + 1;
 	}
-	if (s[i] == '0')
+	if (s[i] == '0' )
 	{
 		while (s[c] == '0')
 		{
 			c++;
 		}
-		if (s[c] == '*')
+		if (s[c] == '*' && s[c + 2] != '*')
 		{
 			i = ft_flag_etoile_zero(c, nombre_charact_int, etoile) + 1;
 		}
-		else
+		if (s[c] != '*')
 		{
 			i = ft_flag_zero(i + 1, s, nombre_charact_int) + 1;
 		}
+		if (s[c] == '*' && s[c + 1] == '.' && s[c + 2] == '*')
+		{
+			if(etoile == 0 && etoile2 < 0 && nombre_charact_int == 0)
+				write(1, "0", 1);
+			if(etoile == 0 && etoile2 > 0 && nombre_charact_int == 0)
+				etoile--;
+			if ( etoile2 < 0 && nombre_charact_int < 0)
+			{
+				i = ft_flag_etoile_tiret_point(i, etoile , etoile - 1, nombre_charact_int) + 4;
+				return (i);
+			}
+			if (etoile2 < 0)
+				etoile2 = etoile;
+			if ( etoile < 0)
+				i = ft_flag_etoile_tiret_point(i, etoile * (-1), etoile2, nombre_charact_int) + 4;
+			else
+			{
+				if (nombre_charact_int == 0 && etoile == 0 && etoile2 != 0)
+					write(1, "0", 1);
+				i = ft_flag_etoile_zero_point(c, etoile, etoile2, nombre_charact_int) + 3;
+			}
+		}
 	}
-	if (s[i] == '*')
+	if (s[i] == '*' && s[i + 1] != '.')
 	{
 		i = ft_flag_etoile(i + 1, nombre_charact_int, etoile) +1;
 	}
-	if (s[i] == '-' && s[i + 1] == '*')
+	if(s[i] == '*' && s[i + 1] == '.' && s[c + 2] == '*')
+	{
+		i = ft_flag_etoile_zero_point(c, etoile, etoile2, nombre_charact_int) + 4;
+	}
+	if (s[i] == '-' && s[i + 1] == '*' && s[i + 3] != '*')
 	{
 		i = ft_ecriture_tiret(i, etoile, nombre_charact_int) + 1;
 	}
-	if (s[i] == '.' && s[i + 1] == '*' )
+	if (s[i] == '.' && s[i + 1] == '*')
 	{
 		if (nombre_charact_int < 0)
 			etoile++;
@@ -111,5 +137,12 @@ int		ft_print_for_d_and_i(int etoile, const char *s, int i, int nombre_charact_i
 			etoile = 1;
 		i = ft_flag_etoile_point(c, nombre_charact_int, etoile) + 3;
 	}
+	if (s[i] == '-' && s[i + 1] == '*' && s[i+2] == '.' && s[i+3] == '*')
+	{
+		if (etoile < 0)
+			etoile = etoile * (-1);
+		i = ft_flag_etoile_tiret_point(i, etoile, etoile2, nombre_charact_int) + 5;
+	}
+	
 	return (i);
 }
