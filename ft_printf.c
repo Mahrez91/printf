@@ -32,14 +32,17 @@ int		ft_printf(const char *s, ...)
 				{
 					if (s[i + 4] == '*')
 					{
-						
-						while (s[c] != 'd' && s[c] != 'i')
+						while (s[c] != 'd' && s[c] != 'i' && s[c] != 'u')
 						{		
 							c++;
 						}
 						if (s[c] == 'd'|| s[c] == 'i')
 						{
 							i = ft_print_for_d_and_i(va_arg(list, int), va_arg(list, int), s, i + 1,  va_arg(list, int));
+						}
+						if (s[c] == 'u')
+						{
+							i = ft_print_for_u(va_arg(list, int), va_arg(list, int), s, i + 1, va_arg(list,unsigned int));
 						}
 					}					
 				}
@@ -82,7 +85,7 @@ int		ft_printf(const char *s, ...)
 						}
 					if(s[c] == 'u')
 					{
-						i = ft_print_for_u(va_arg(list, int), s, i + 1, va_arg(list,unsigned int));
+						i = ft_print_for_u(va_arg(list, int),0, s, i + 1, va_arg(list,unsigned int));
 					}
 					if(s[c] == 'X')
 					{
@@ -107,7 +110,7 @@ int		ft_printf(const char *s, ...)
 					}
 					if(s[c + 1] == 'u')
 					{
-						i = ft_print_for_u(va_arg(list, int) , s, i + 1, va_arg(list,unsigned int));
+						i = ft_print_for_u(va_arg(list, int) , 0, s, i + 1, va_arg(list,unsigned int));
 					}
 					if(s[c + 1] == 'p')
 					{
@@ -139,7 +142,7 @@ int		ft_printf(const char *s, ...)
 				}
 				if(s[c] == 'u')
 				{
-					i = ft_print_for_u(0 , s, i + 1, va_arg(list,unsigned int));
+					i = ft_print_for_u(0 ,0, s, i + 1, va_arg(list,unsigned int));
 				}
 				if(s[c] == 'p')
 				{
@@ -174,7 +177,7 @@ int		ft_printf(const char *s, ...)
 				}
 				if(s[c] == 'u')
 				{
-					i = ft_print_for_u(0 , s, i + 1, va_arg(list,unsigned int));
+					i = ft_print_for_u(0 ,0, s, i + 1, va_arg(list,unsigned int));
 				}
 				if(s[c] == 'p')
 				{
@@ -243,27 +246,6 @@ int main()
 
 	printf("\n\n----------NUMBERS----------\n\n");
 
-	ft_printf("%*.*d||\n",-90,-80,10);
-	printf("%*.*d||\n\n",-90,-80,10);
-
-	/*ft_printf("%*.*d||\n",100, -50,-10);
-	printf("%*.*d||\n\n",100,-50,-10);
-
-	ft_printf("%*.*d||\n",-10,0,-10);
-	printf("%*.*d||\n\n",-10,0,-10);
-
-	ft_printf("%*.*d||\n",0,10,-10);
-	printf("%*.*d||\n\n",0,10,-10);
-
-	ft_printf("%*.*d||\n",10,0,-10);
-	printf("%*.*d||\n\n",10,0,-10);
-
-	ft_printf("%*.*d||\n",0,0,-10);
-	printf("%*.*d||\n\n",0,0,-10);
-
-	ft_printf("%*.*d||\n",-3,-5,-10);
-	printf("%*.*d||\n\n",-3,-5,-10);
-
-	ft_printf("%*.*d||\n",-10,-10,-10);
-	printf("%*.*d||\n\n",-10,-10,-10);*/
+	ft_printf("%-*.*u||\n",40,30,10);
+	printf("%-*.*u||\n\n",40,30,10);
 }

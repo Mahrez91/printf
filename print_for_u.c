@@ -35,7 +35,7 @@ int		ft_int_for_u(unsigned int n)
 	return (count);
 }
  
-int		ft_print_for_u(int etoile, const char *s, int i, unsigned int nombre_charact_int)
+int		ft_print_for_u(int etoile, int etoile2, const char *s, int i, unsigned int nombre_charact_int)
 {
 	int c;
 	
@@ -95,6 +95,6 @@ int		ft_print_for_u(int etoile, const char *s, int i, unsigned int nombre_charac
 	{
 		i = ft_ecriture_tiret_u(i, etoile , nombre_charact_int) + 1;
 	}
-
+	etoile2--;
 	return (i);
 }

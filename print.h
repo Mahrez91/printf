@@ -68,7 +68,7 @@ int				ft_flag_etoile_u(int etoile, int i,unsigned int nombre_charact_int);
 int				ft_ecriture_tiret_u(int i, int y, unsigned int nombre_charact_int);
 int				ft_flag_etoile_zero_u(int etoile, int i, unsigned int nombre_charact_int);
 int				ft_flag_etoile_point_u(int etoile, int i, unsigned int nombre_charact_int);
-int				ft_print_for_u(int etoile, const char *s, int i, unsigned int nombre_charact_int);
+int				ft_print_for_u(int etoile, int etoile2, const char *s, int i, unsigned int nombre_charact_int);
 int				ft_flag_largeur_p(int i, const char *s,void * nombre_charact_int);
 int				ft_flag_tiret_p(int i, const char *s,void * nombre_charact_int);
 int				ft_flag_p(void * nombre_charact_int, int i);
