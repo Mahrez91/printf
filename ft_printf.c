@@ -51,13 +51,17 @@ int		ft_printf(const char *s, ...)
 					if (s[i + 3] == '*')
 					{
 						
-						while (s[c] != 'd' && s[c] != 'i')
+						while (s[c] != 'd' && s[c] != 'i' && s[c] != 'u')
 						{		
 							c++;
 						}
 						if (s[c] == 'd'|| s[c] == 'i')
 						{
 							i = ft_print_for_d_and_i(va_arg(list, int), va_arg(list, int), s, i + 1,  va_arg(list, int));
+						}
+						if (s[c] == 'u')
+						{
+						i = ft_print_for_u(va_arg(list, int),va_arg(list, int), s, i + 1,  va_arg(list, int));
 						}
 					}
 				}
@@ -130,6 +134,10 @@ int		ft_printf(const char *s, ...)
 					if (s[c + 3] == 'd' || s[c + 3] == 'i')
 					{
 						i = ft_print_for_d_and_i(va_arg(list, int),va_arg(list, int), s, i + 1,  va_arg(list, int));
+					}
+					if (s[c + 3] == 'u')
+					{
+						i = ft_print_for_u(va_arg(list, int),va_arg(list, int), s, i + 1,  va_arg(list, int));
 					}
 				}
 				while (s[c] != 'd' && s[c] != 'i' && s[c] != 'u' && s[c] != 'p' && s[c] != 'x' && s[c] != 'X')
@@ -246,6 +254,6 @@ int main()
 
 	printf("\n\n----------NUMBERS----------\n\n");
 
-	ft_printf("%-*.*u||\n",40,30,10);
-	printf("%-*.*u||\n\n",40,30,10);
+	ft_printf("%0*.*u||\n",10,10,0);
+	printf("%0*.*u||\n\n",10,10,0);
 }

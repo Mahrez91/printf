@@ -121,7 +121,7 @@ int		ft_print_for_d_and_i(int etoile,int etoile2, const char *s, int i, int nomb
 	{
 		i = ft_flag_etoile(i + 1, nombre_charact_int, etoile) +1;
 	}
-	if(s[i] == '*' && s[i + 1] == '.' && s[c + 2] == '*')
+	if(s[i] == '*' && s[i + 1] == '.' && s[i + 2] == '*')
 	{
 		/*if (etoile2 < 0)
 			etoile2 = etoile;*/

@@ -364,3 +364,83 @@ int		ft_flag_etoile_point_u(int etoile, int i, unsigned int nombre_charact_int)
 	return (i);
 }
 
+int		ft_ecriture_tiret_point_etoile_u(int i, int y,int len_int)
+{		
+	if (y < 0)
+		y = y *(-1);
+	if (y >= len_int)
+	{
+		y = y - len_int + 1;
+		while (y > 1)
+		{
+			write(1," ",1);
+			y--;
+		}	
+	}
+	return i;
+}
+
+int		ft_flag_etoile_tiret_point_u(int i, int etoile,int etoile2,int nombre_charact_int)
+{
+	int len_int;
+	char *dest = NULL;
+
+	dest = malloc(sizeof(char) * 3);
+	nombre_charact_int = ft_conversion(nombre_charact_int);
+	dest = ft_itoa_for_u(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	if (etoile >= etoile2)
+		etoile = etoile - etoile2 + len_int;
+	else
+		etoile = 0;
+	if (etoile2 < len_int)
+		etoile = etoile - (len_int - etoile2);	
+	ft_flag_etoile_point_u(etoile2, i, nombre_charact_int);
+	//if (nombre_charact_int == 0)
+	//	etoile--;
+	ft_ecriture_tiret_point_etoile_u(i, etoile  , len_int);
+	return (i);
+}
+
+int		ft_ecriture_zero_point_etoile_u(int i, int y,unsigned int nombre_charact_int, int len_int)
+{	
+	if (y > len_int)
+	{
+		y = y - len_int;
+		if (nombre_charact_int == 0)
+			y--;
+		while(y > 0)
+		{
+			write(1," ",1);
+			y--;
+		}
+	}
+	i = i + 2;
+	return i;
+}
+
+int		ft_flag_etoile_zero_point_u(int i, int etoile,int etoile2,unsigned int nombre_charact_int)
+{
+	char *dest = NULL;
+	int len_int;
+
+	dest = malloc(sizeof(char) * 3);
+	nombre_charact_int = ft_conversion(nombre_charact_int);
+	dest = ft_itoa_for_u(nombre_charact_int);
+	len_int = ft_strlen(dest);
+	if (nombre_charact_int == 0)
+		etoile++;
+	if (etoile2 < len_int)
+		etoile = etoile - (len_int - etoile2);
+	if (etoile > etoile2)
+	{
+		if (etoile >= etoile2)
+			etoile = etoile - etoile2 + len_int;
+		ft_ecriture_zero_point_etoile_u(i, etoile  , nombre_charact_int, len_int);
+	}
+	if (etoile2 != 0 || nombre_charact_int != 0)
+	{
+		ft_ecriture_zero_u(i, etoile2  ,nombre_charact_int,len_int);
+	}
+	return (i);
+}

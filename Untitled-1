@@ -1,0 +1,11 @@
+int main()
+{	
+	//char s2[] = "salut ca va bien";
+	//int *ptr = 0;
+	//char c = 'a';
+
+	printf("\n\n----------NUMBERS----------\n\n");
+
+	ft_printf("%-*.*u||\n",010,10,100);
+	printf("%-*.*u||\n\n",010,10,100);
+}

@@ -560,24 +560,3 @@ int		ft_flag_etoile_zero_point(int i, int etoile,int etoile2,int nombre_charact_
 		ft_ecriture_zero(i, etoile2  ,nombre_charact_int,len_int);
 	return (i);
 }
-/*if (nombre_charact_int == 0)
-		etoile++;
-	if (etoile2 < len_int)
-		etoile = etoile - (len_int - etoile2);
-	if (etoile > etoile2)
-	{
-		if (etoile >= etoile2)
-			etoile = etoile - etoile2 + len_int;
-		ft_ecriture_zero_point_etoile(i, etoile  , nombre_charact_int, len_int);
-	}
-	if (etoile2 != 0 || nombre_charact_int != 0)
-		ft_ecriture_zero(i, etoile2  ,nombre_charact_int,len_int);
-	if(etoile < 0 && (etoile * (-1) - etoile2) > 0)
-	{
-		etoile  = etoile * (-1) - etoile2;
-		while (etoile != 0)
-		{
-			write(1," ", 1);
-			etoile--;
-		}	
-	}*/
