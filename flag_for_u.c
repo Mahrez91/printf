@@ -1,27 +1,6 @@
 #include "Struct_d_and_i.h"
 #include "print.h"
 
-int		ft_ecriture_tiret_u(int i, int y, unsigned int nombre_charact_int)
-{	
-	int count;
-
-	count = ft_int_pos(nombre_charact_int);
-	i = i + 2;
-
-	if (y < 0)
-		y = y *(-1);
-	if (y >= count)
-	{
-		y = y - count;
-		while (y != 0)
-		{
-			write(1," ",1);
-			y--;
-		}	
-	}
-	return i;
-}
-
 int		ft_flag_tiret_u(int i, const char *s,unsigned int nombre_charact_int)
 {
 	int y;
@@ -95,29 +74,6 @@ int		ft_flag_tiret_u(int i, const char *s,unsigned int nombre_charact_int)
 	return (i);
 }
 
-int		ft_ecriture_largeur_u(int i, int y,unsigned int nombre_charact_int, int len_int)
-{	
-	if (y < 0)
-	{
-		ft_ecriture_tiret(i, y, nombre_charact_int);
-		return (i + 2);
-	}
-	if (y > len_int)
-	{
-		y = y - len_int;
-		if (nombre_charact_int == 0)
-			y--;
-		while(y > 0)
-			{
-				write(1," ",1);
-				y--;
-			}
-	}
-	ft_int_for_u(nombre_charact_int);
-	i = i + 2;
-	return i;
-}
-
 int		ft_flag_largeur_u(int i, const char *s,unsigned int nombre_charact_int)
 {
 	int y;
@@ -157,52 +113,6 @@ int		ft_flag_largeur_u(int i, const char *s,unsigned int nombre_charact_int)
 	return (i);
 }
 
-int		ft_ecriture_zero_u(int i, int y, unsigned int nombre_charact_int, int len_int)
-{	
-	if (y > len_int)
-	{
-		y = y - len_int;
-		if (nombre_charact_int == 0)
-			y--;
-		while(y > 0)
-		{
-			write(1,"0",1);
-			y--;
-		}
-	}
-	if (nombre_charact_int != 0)
-		ft_int_for_u(nombre_charact_int);
-	if (nombre_charact_int == 0)
-		write(1, "0", 1);
-	i = i + 2;
-	return i;
-}
-
-int		ft_ecriture_point_u(int i, int y, unsigned int nombre_charact_int, int len_int)
-{	
-	int tmp;
-
-	tmp = y;
-	if (y > len_int)
-	{
-		y = y - len_int;
-		if (nombre_charact_int == 0)
-			y--;
-		while(y > 0)
-		{
-			write(1,"0",1);
-			y--;
-		}
-	}
-	if (nombre_charact_int != 0 || tmp != 0)
-	{	
-		ft_int_for_u(nombre_charact_int);
-		return (i + 2);
-	}
-	i = i + 2;
-	return i;
-}
-
 int		ft_flag_point_u(int i, const char *s,unsigned int nombre_charact_int)
 {
 	int y;
@@ -226,18 +136,6 @@ int		ft_flag_point_u(int i, const char *s,unsigned int nombre_charact_int)
 	len_int = ft_strlen(dest);
 	ft_ecriture_point_u(i, y, nombre_charact_int, len_int);
 	return (i);
-}
-
-int		ft_ecriture_double_flag_u(int i, int y, unsigned int nombre_charact_int,int len_int)
-{	
-	while(y > len_int)
-	{
-		write(1,"0",1);
-		y--;
-	}
-	
-	ft_int_for_u(nombre_charact_int);
-	return (i + 2);
 }
 
 int		ft_flag_zero_u(int i, const char *s,unsigned int nombre_charact_int)
@@ -322,125 +220,5 @@ int		ft_flag_zero_u(int i, const char *s,unsigned int nombre_charact_int)
 	dest = ft_itoa_for_u(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	ft_ecriture_zero_u(i, y, nombre_charact_int, len_int);
-	return (i);
-}
-
-int		ft_flag_etoile_u(int etoile, int i,unsigned int nombre_charact_int)
-{
-	char *dest = NULL; 
-	int len_int;
-	
-	nombre_charact_int = ft_conversion(nombre_charact_int);
-	dest = malloc(sizeof(char) * 3);
-	dest = ft_itoa_for_u(nombre_charact_int);
-	len_int = ft_strlen(dest);
-	ft_ecriture_largeur_u(i, etoile, nombre_charact_int, len_int);
-	return (i);
-}
-
-int		ft_flag_etoile_zero_u(int etoile, int i, unsigned int nombre_charact_int)
-{
-	char *dest = NULL;
-	int len_int;
-
-	nombre_charact_int = ft_conversion(nombre_charact_int);
-	dest = malloc(sizeof(char) * 3);
-	dest = ft_itoa_for_u(nombre_charact_int);
-	len_int = ft_strlen(dest);
-	ft_ecriture_zero_u(i, etoile, nombre_charact_int, len_int);
-	return (i);
-}
-
-int		ft_flag_etoile_point_u(int etoile, int i, unsigned int nombre_charact_int)
-{
-	char *dest = NULL;
-	int len_int;
-
-	nombre_charact_int = ft_conversion(nombre_charact_int);
-	dest = malloc(sizeof(char) * 3);
-	dest = ft_itoa_for_u(nombre_charact_int);
-	len_int = ft_strlen(dest);
-	ft_ecriture_point_u(i, etoile, nombre_charact_int, len_int);
-	return (i);
-}
-
-int		ft_ecriture_tiret_point_etoile_u(int i, int y,int len_int)
-{		
-	if (y < 0)
-		y = y *(-1);
-	if (y >= len_int)
-	{
-		y = y - len_int + 1;
-		while (y > 1)
-		{
-			write(1," ",1);
-			y--;
-		}	
-	}
-	return i;
-}
-
-int		ft_flag_etoile_tiret_point_u(int i, int etoile,int etoile2,int nombre_charact_int)
-{
-	int len_int;
-	char *dest = NULL;
-
-	dest = malloc(sizeof(char) * 3);
-	nombre_charact_int = ft_conversion(nombre_charact_int);
-	dest = ft_itoa_for_u(nombre_charact_int);
-	len_int = ft_strlen(dest);
-	if (etoile >= etoile2)
-		etoile = etoile - etoile2 + len_int;
-	else
-		etoile = 0;
-	if (etoile2 < len_int)
-		etoile = etoile - (len_int - etoile2);	
-	ft_flag_etoile_point_u(etoile2, i, nombre_charact_int);
-	//if (nombre_charact_int == 0)
-	//	etoile--;
-	ft_ecriture_tiret_point_etoile_u(i, etoile  , len_int);
-	return (i);
-}
-
-int		ft_ecriture_zero_point_etoile_u(int i, int y,unsigned int nombre_charact_int, int len_int)
-{	
-	if (y > len_int)
-	{
-		y = y - len_int;
-		if (nombre_charact_int == 0)
-			y--;
-		while(y > 0)
-		{
-			write(1," ",1);
-			y--;
-		}
-	}
-	i = i + 2;
-	return i;
-}
-
-int		ft_flag_etoile_zero_point_u(int i, int etoile,int etoile2,unsigned int nombre_charact_int)
-{
-	char *dest = NULL;
-	int len_int;
-
-	dest = malloc(sizeof(char) * 3);
-	nombre_charact_int = ft_conversion(nombre_charact_int);
-	dest = ft_itoa_for_u(nombre_charact_int);
-	len_int = ft_strlen(dest);
-	if (nombre_charact_int == 0)
-		etoile++;
-	if (etoile2 < len_int)
-		etoile = etoile - (len_int - etoile2);
-	if (etoile > etoile2)
-	{
-		if (etoile >= etoile2)
-			etoile = etoile - etoile2 + len_int;
-		ft_ecriture_zero_point_etoile_u(i, etoile  , nombre_charact_int, len_int);
-	}
-	if (etoile2 != 0 || nombre_charact_int != 0)
-	{
-		ft_ecriture_zero_u(i, etoile2  ,nombre_charact_int,len_int);
-	}
 	return (i);
 }

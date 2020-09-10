@@ -29,11 +29,11 @@ int		ft_atoi(const char *nptr)
 	return (nb * sign);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char *alpha;
-	char *str;
-	int i;
+	char	*alpha;
+	char	*str;
+	int		i;
 
 	i = 0;
 	if (!(str = (char*)malloc(sizeof(char) * (ft_count(n) + 1))))
@@ -51,14 +51,14 @@ char		*ft_itoa(int n)
 	}
 	str[i] = '\0';
 	str = ft_strrev(str);
-	return(str);
+	return (str);
 }
 
-char		*ft_itoa_for_u(unsigned int n)
+char	*ft_itoa_for_u(unsigned int n)
 {
-	char *alpha;
-	char *str;
-	int i;
+	char	*alpha;
+	char	*str;
+	int		i;
 
 	i = 0;
 	if (!(str = (char*)malloc(sizeof(char) * (ft_count(n) + 1))))
@@ -76,10 +76,10 @@ char		*ft_itoa_for_u(unsigned int n)
 	}
 	str[i] = '\0';
 	str = ft_strrev(str);
-	return(str);
+	return (str);
 }
 
-int	ft_conversion(unsigned int n)
+int		ft_conversion(unsigned int n)
 {
 	int i;
 
@@ -88,7 +88,7 @@ int	ft_conversion(unsigned int n)
 	{
 		i = n * (-1);
 		n = 4294967296 - i;
-		return(n);
+		return (n);
 	}
-	return n;
+	return (n);
 }

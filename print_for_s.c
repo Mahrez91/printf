@@ -6,6 +6,8 @@ void	ft_chaine(char *s)
 	int i;
 
 	i = 0;
+	if (!s || !*s)
+		return ;
 	while (s[i] != '\0')
 	{
 		write(1, &s[i], 1);

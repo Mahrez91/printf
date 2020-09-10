@@ -118,10 +118,6 @@ int		ft_print_for_u(int etoile, int etoile2, const char *s, int i, unsigned int 
 		}
 		i = i + 3;
 	}
-	if (s[i] == '-' && s[i + 1] == '*' && s[i + 3] != '*')
-	{
-		i = ft_ecriture_tiret_u(i, etoile , nombre_charact_int) + 1;
-	}
 	if (s[i] == '-' && s[i + 1] == '*' && s[i+2] == '.' && s[i+3] == '*')
 	{
 		if (etoile < 0)

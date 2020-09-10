@@ -1,41 +1,20 @@
 #include "Struct_d_and_i.h"
 #include "print.h"
 
-int		ft_ecriture_tiret_p(int i, int y, char *dest, int len_int)
-{	
-
-	write(1, "0x", 2);
-	ft_putstr(dest);
-	i = i + 2;
-	if (y < 0)
-		y = y *(-1);
-	if (y >= len_int)
-	{
-		y = y - len_int;
-		while (y > 0)
-		{
-
-			write(1," ",1);
-			y--;
-		}	
-	}
-	return i;
-}
-
-int		ft_flag_tiret_p(int i, const char *s,void * nombre_charact_int)
+int		ft_flag_tiret_p(int i, const char *s, void *nombre_charact_int)
 {
 	int y;
 	char *tmp = NULL;
 	char *dest = NULL;
 	int len_int;
-	flag decalage = {0,0};
+	flag decalage = {0, 0};
 
 	tmp = malloc(sizeof(char) * 3);
 	dest = malloc(sizeof(char) * 3);
 	if (s[i] >= '0' && s[i] <= '9')
 	{
 		y = i;
-		while (s[i ] >= '0' && s[i] <= '9')
+		while (s[i] >= '0' && s[i] <= '9')
 		{
 			decalage.nombre_d_espace++;
 			i++;
@@ -51,35 +30,13 @@ int		ft_flag_tiret_p(int i, const char *s,void * nombre_charact_int)
 	return (i);
 }
 
-int		ft_ecriture_largeur_p( int i, int y, char *dest, int len_int)
-{	
-	if (y < 0)
-	{
-		ft_ecriture_tiret_p(i, y, dest, len_int);
-		return (i + 2);
-	}
-	if (y > len_int)
-	{
-		y = y - len_int;
-		while(y > 0)
-		{
-			write(1," ",1);
-			y--;
-		}
-	}
-	write(1, "0x", 2);
-	ft_putstr(dest);
-	i = i + 2;
-	return i;
-}
-
-int		ft_flag_largeur_p(int i, const char *s, void * nombre_charact_int)
+int		ft_flag_largeur_p(int i, const char *s, void *nombre_charact_int)
 {
 	int y;
 	char *tmp = NULL;
-	char *dest = NULL; 
+	char *dest = NULL;
 	int len_int;
-	flag decalage = {0,0};
+	flag decalage = {0, 0};
 
 	tmp = malloc(sizeof(char) * 3);
 	dest = malloc(sizeof(char) * 3);
@@ -97,21 +54,21 @@ int		ft_flag_largeur_p(int i, const char *s, void * nombre_charact_int)
 	return (i);
 }
 
-int		ft_flag_p(void * nombre_charact_int, int i)
+int		ft_flag_p(void *nombre_charact_int, int i)
 {
-	char *dest = NULL; 
+	char *dest = NULL;
 
-	dest = malloc(sizeof(char) * 3);	
+	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_base_min((intptr_t)nombre_charact_int);
 	write(1, "0x", 2);
 	ft_putstr(dest);
 	return (i);
 }
 
-int		ft_flag_etoile_p(int i, int etoile, void * nombre_charact_int)
+int		ft_flag_etoile_p(int i, int etoile, void *nombre_charact_int)
 {
-	char *dest = NULL; 
-	int len_int;
+	char	*dest = NULL;
+	int		len_int;
 
 	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_base_min((intptr_t)nombre_charact_int);
@@ -120,10 +77,10 @@ int		ft_flag_etoile_p(int i, int etoile, void * nombre_charact_int)
 	return (i);
 }
 
-int		ft_flag_etoile_tiret_p(int etoile, int i,void * nombre_charact_int)
+int		ft_flag_etoile_tiret_p(int etoile, int i, void *nombre_charact_int)
 {
-	char *dest = NULL;
-	int len_int;
+	char	*dest = NULL;
+	int		len_int;
 
 	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_base_min((intptr_t)nombre_charact_int);
