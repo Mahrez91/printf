@@ -23,6 +23,7 @@ char	*ft_strlcpy(char *dst, const char *src, int n, int y)
 	int	i;
 
 	i = 0; 
+	dst = malloc(sizeof(char) * (n+1));
 	while (i < n)
 	{
 		dst[i] = src[y + 1];

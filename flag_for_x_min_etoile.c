@@ -6,7 +6,6 @@ int		ft_flag_etoile_x_min(int etoile, int i, unsigned int nombre_charact_int)
 	char *dest = NULL; 
 	int len_int;
 
-	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	ft_ecriture_largeur_x( i, etoile , dest, len_int);
@@ -18,7 +17,6 @@ int		ft_flag_tiret_etoile_x_min(int etoile, int i, unsigned int nombre_charact_i
 	char *dest = NULL;
 	int len_int;
 
-	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	ft_ecriture_tiret_x(i, etoile, dest, len_int);
@@ -30,7 +28,6 @@ int		ft_flag_etoile_zero_x_min(int etoile, int i, int nombre_charact_int)
 	char *dest = NULL;
 	int len_int;
 
-	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	ft_ecriture_zero_x( i, etoile, dest, len_int, nombre_charact_int);
@@ -42,7 +39,6 @@ int		ft_flag_etoile_point_x_min(int etoile, int i, int nombre_charact_int)
 	char *dest = NULL;
 	int len_int;
 
-	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	ft_ecriture_point_x( i, etoile, dest, len_int, nombre_charact_int);
@@ -54,7 +50,6 @@ int		ft_flag_etoile_tiret_point_x_min(int i, int etoile,int etoile2,int nombre_c
 	int len_int;
 	char *dest = NULL;
 
-	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	if (etoile >= etoile2)
@@ -75,7 +70,6 @@ int		ft_flag_etoile_zero_point_x_min(int i, int etoile,int etoile2,unsigned int 
 	char *dest = NULL;
 	int len_int;
 
-	dest = malloc(sizeof(char) * 3);
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	if (nombre_charact_int == 0)

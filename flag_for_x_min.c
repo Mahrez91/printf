@@ -11,8 +11,6 @@ int		ft_flag_tiret_x(int i, const char *s,unsigned int nombre_charact_int)
 	int tampon;
 	flag decalage = {0,0};
 
-	tmp = malloc(sizeof(char) * 3);
-	dest = malloc(sizeof(char) * 3);
 	double_flag = 0;
 	tampon = 0;
 	y = i;
@@ -71,6 +69,8 @@ int		ft_flag_tiret_x(int i, const char *s,unsigned int nombre_charact_int)
 		}
 		tmp = ft_strlcpy(tmp, s, decalage.nombre_d_espace, y);
 	}
+	//printf("%d \n", decalage.nombre_d_espace);
+	//("%lu \n", strlen(tmp));
 	dest = ft_itoa_base_min(nombre_charact_int);
 	len_int = ft_strlen(dest);
 	y = ft_atoi(tmp);
@@ -86,8 +86,6 @@ int		ft_flag_largeur_x(int i, const char *s,unsigned int nombre_charact_int)
 	int len_int;
 	flag decalage = {0,0};
 
-	tmp = malloc(sizeof(char) * 3);
-	dest = malloc(sizeof(char) * 3);
 	y = i - 1;
 	while (s[y] != 'x')
 	{
@@ -124,8 +122,6 @@ int		ft_flag_point_x(int i, const char *s,int nombre_charact_int)
 	int len_int;
 	flag decalage = {0,0};
 
-	tmp = malloc(sizeof(char) * 3);
-	dest = malloc(sizeof(char) * 3);
 	y = i - 1;
 	while (s[i] >= '0' && s[i] <= '9')
 	{
@@ -180,8 +176,6 @@ int		ft_flag_zero_x(int i, const char *s,int nombre_charact_int)
 	int tampon;
 	flag decalage = {0,0};
 
-	tmp = malloc(sizeof(char) * 3);
-	dest = malloc(sizeof(char) * 3);
 	y = i - 1;
 	tampon = 0;
 	while (s[y] != 'x')

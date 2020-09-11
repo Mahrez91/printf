@@ -11,8 +11,6 @@ int		ft_flag_tiret_u(int i, const char *s,unsigned int nombre_charact_int)
 	char *dest = NULL;
 	flag decalage = {0,0};
 
-	tmp = malloc(sizeof(char) * 3);
-	dest = malloc(sizeof(char) * 3);
 	y = i;
 	while (s[y] != 'u')
 	{
@@ -83,8 +81,6 @@ int		ft_flag_largeur_u(int i, const char *s,unsigned int nombre_charact_int)
 	flag decalage = {0,0};
 
 	nombre_charact_int = ft_conversion(nombre_charact_int);
-	tmp = malloc(sizeof(char) * 3);
-	dest = malloc(sizeof(char) * 3);
 	y = i - 1;
 	while (s[y] != 'u')
 	{
@@ -122,8 +118,6 @@ int		ft_flag_point_u(int i, const char *s,unsigned int nombre_charact_int)
 	flag decalage = {0,0};
 
 	nombre_charact_int = ft_conversion(nombre_charact_int);
-	tmp = malloc(sizeof(char) * 3);
-	dest = malloc(sizeof(char) * 3);
 	y = i - 1;
 	while (s[i] >= '0' && s[i] <= '9')
 	{
@@ -148,8 +142,6 @@ int		ft_flag_zero_u(int i, const char *s,unsigned int nombre_charact_int)
 	flag decalage = {0,0};
 
 	nombre_charact_int = ft_conversion(nombre_charact_int);
-	tmp = malloc(sizeof(char) * 3);
-	dest = malloc(sizeof(char) * 3);
 	y = i - 1;
 	while (s[y] != 'u')
 	{

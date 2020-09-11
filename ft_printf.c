@@ -236,7 +236,9 @@ int		ft_printf(const char *s, ...)
 			}
 			if (s[i + 1] == 's')
 			{
-				ft_chaine(va_arg(list, char*));
+				char *tmp = va_arg(list, char*);
+				printf("%s %p\n",tmp, tmp);
+				ft_chaine(tmp);
 				i = i + 2;
 			}
 			if (s[i + 1] == 'u')

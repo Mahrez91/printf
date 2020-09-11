@@ -10,6 +10,8 @@ int		ft_atoi(const char *nptr)
 	sign = 1;
 	nb = 0;
 	i = 0;
+	if (!nptr)
+		return (0);
 	while (nptr[i] == '\n' || nptr[i] == '\t' || nptr[i] == '\v' ||
 		nptr[i] == '\f' || nptr[i] == '\r' || nptr[i] == ' ')
 	{

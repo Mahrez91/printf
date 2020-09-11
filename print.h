@@ -115,7 +115,7 @@ int				ft_print_for_p(int etoile, const char *s, int i, void * nombre_charact_in
 int				ft_atoi(const char *nptr);
 char			*ft_itoa(int n);
 char			*ft_itoa_for_u(unsigned int n);
-//char			*ft_strlcpy(char *dst, const char *src, int n, int y);
+char			*ft_strlcpy(char *dst, const char *src, int n, int y);
 char			*ft_itoa_base_min(long n);
 char			*ft_itoa_base_maj(unsigned int n);
 char			*ft_strrev(char *str);
