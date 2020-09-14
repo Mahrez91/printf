@@ -237,7 +237,6 @@ int		ft_printf(const char *s, ...)
 			if (s[i + 1] == 's')
 			{
 				char *tmp = va_arg(list, char*);
-				printf("%s %p\n",tmp, tmp);
 				ft_chaine(tmp);
 				i = i + 2;
 			}
@@ -261,11 +260,12 @@ int		ft_printf(const char *s, ...)
 				i = ft_print_for_p(0, s, i + 1, va_arg(list,void *));
 			}
 		}
+		
 		if (s[i] != '\0')
 		{
 			write(1, &s[i], 1);
 			i++;
-		}	
+		}
 	}
 	va_end(list);
 	printf("\n");

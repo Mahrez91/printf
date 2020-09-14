@@ -14,8 +14,8 @@ int main()
 	printf("\n\n----------NUMBERS----------\n\n");
 
 
-	ft_printf("%-20.20s || %10.4s || %11.20s ||\n", "", NULL, "");
-	printf("%-20.20s || %10.4s || %11.20s ||", "", NULL, "");
+	ft_printf("%0045.50x || %00.4x || %0011.1x ||\n", 0, 0, 0);
+	printf("%0045.50x || %00.4x || %0011.1x ||", 0, 0, 0);
 	
 	/*char s2 [100] = "salut ca va bien";
 	char s2 [100] = "salut ca va bien";

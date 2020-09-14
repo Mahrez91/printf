@@ -81,6 +81,7 @@ char		*ft_itoa_base_min(long n)
 	if (n == 0)
 	{
 		str[i] = '0';
+		str[i + 1] = '\0';
 		return (str);
 	}
 	if (n < 0)

@@ -3,6 +3,16 @@ SRC=    conversion_maj.c       		\
 		conversion.c      \
 		flag_for_c.c    \
 		flag_for_d_and_i_etoile.c	\
+		flag_tiret_for_s.c	\
+		flag_tiret_for_u.c	\
+		flag_tiret_for_x_min.c	\
+		flag_tiret_for_x_maj.c	\
+		flag_tiret_for_d_and_i.c	\
+		flag_largeur_for_s.c	\
+		flag_zero_for_u.c	\
+		flag_zero_for_d_and_i.c	\
+		flag_zero_for_x_min.c	\
+		flag_zero_for_x_maj.c	\
 		flag_for_d_and_i.c       \
 		flag_for_s_etoile.c	\
 		flag_for_s.c    	\

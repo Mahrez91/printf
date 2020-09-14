@@ -48,7 +48,6 @@ int		ft_ecriture_point_x_maj(int i, int y, char *dest, int len_int, int nombre_c
 				y--;
 			}	
 	}
-
 	if (nombre_charact_int != 0 || tmp != 0)
 	{	
 		ft_putstr(dest);
