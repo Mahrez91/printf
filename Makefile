@@ -26,8 +26,10 @@ SRC=    conversion_maj.c       		\
 		print_for_x_maj.c     \
 		print_for_x_min.c     \
 		print_for_d_and_i.c    \
+		print_for_d_and_i_star_and_other.c	\
 		print_for_p.c     \
 		print_for_u.c     \
+		print_for_u_tiret.c	\
 		ft_printf.c  \
 		print_for_s.c  \
 		print_for_c.c	\

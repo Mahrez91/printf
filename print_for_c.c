@@ -13,7 +13,7 @@ int		ft_print_for_c(int etoile, const char *s, int i, int character)
 	}
 	if (s[i] == '*')
 	{
-		i = ft_ecriture_largeur_c(i, etoile, character) + 1 ;
+		i = ft_ecriture_largeur_c(i, etoile, character);
 	}
 	if (s[i] == '-' && s[i+1] == '*')
 	{

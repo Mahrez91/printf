@@ -33,6 +33,7 @@ int		ft_ecriture_double_flag(int i, int y, int nombre_charact_int,int len_int);
 int		ft_ecriture_point(int i, int y, int nombre_charact_int, int len_int);
 int		ft_ecriture_largeur( int i, int y, int nombre_charact_int, int len_int);
 int				ft_ecriture_tiret(int i, int y, int nombre_charact_int);
+int		ft_print_for_d_and_i_tiret(int etoile,int etoile2, const char *s, int i, int nombre_charact_int);
 int				ft_print_for_d_and_i(int etoile,int etoile2, const char *s, int i, int nombre_charact_int);
 int				ft_flag_point_s(int i, const char *s,char *string);
 int				ft_flag_largeur_s(int i, const char *s,char *string);
@@ -103,6 +104,7 @@ int				ft_flag_etoile_zero_u(int etoile, int i, unsigned int nombre_charact_int)
 int				ft_flag_etoile_point_u(int etoile, int i, unsigned int nombre_charact_int);
 int				ft_flag_etoile_tiret_point_u(int i, int etoile,int etoile2,int nombre_charact_int);
 int				ft_flag_etoile_zero_point_u(int i, int etoile,int etoile2,unsigned int nombre_charact_int);
+int		ft_print_for_u_tiret(int etoile, int etoile2, const char *s, int i, unsigned int nombre_charact_int);
 int				ft_print_for_u(int etoile, int etoile2, const char *s, int i, unsigned int nombre_charact_int);
 int				ft_flag_largeur_p(int i, const char *s,void * nombre_charact_int);
 int				ft_flag_tiret_p(int i, const char *s,void * nombre_charact_int);
