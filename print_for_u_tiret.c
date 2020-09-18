@@ -10,6 +10,8 @@ int		ft_print_for_u_tiret(int etoile, int etoile2, const char *s, int i, unsigne
 
 	count = 0;
 	nombre_charact_int = ft_conversion(nombre_charact_int);
+	if (etoile < 0)
+		etoile = etoile * (-1);
 	ft_flag_tiret_u(i + 1, s, nombre_charact_int);
 	if (s[i+ 3] >= '0' && s[i + 3] <= '9')
 	{
@@ -35,6 +37,5 @@ int		ft_print_for_u_tiret(int etoile, int etoile2, const char *s, int i, unsigne
 	while (s[i] != 'u')
 		i++;
 	etoile2--;
-	etoile--;
 	return (i + 1);
 }

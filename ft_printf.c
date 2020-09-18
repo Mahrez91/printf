@@ -28,7 +28,7 @@ int		ft_printf(const char *s, ...)
 			c = i;
 			if (s[i + 1] == '-' && s[i + 2] == '*' && s[i + 3] == '.')
 			{
-				while(s[c] != 'd' && s[c] != 'i' && s[c] != 'u')
+				while(s[c] != 'd' && s[c] != 'i' && s[c] != 'u' && s[c] != 's')
 				{
 					c++;
 				}
@@ -39,6 +39,10 @@ int		ft_printf(const char *s, ...)
 				if (s[c] == 'u')
 				{
 					i = ft_print_for_u_tiret(va_arg(list, int), 0, s, i + 1,  va_arg(list, int));
+				}
+				if (s[c] == 's')
+				{
+					i = ft_print_for_s_tiret(va_arg(list, int), 0, s, i + 1,  va_arg(list, int));
 				}
 			}
 			if (s[i + 1] == '*' || (s[i + 1] == '-' && s[i + 2] == '*') ||  (s[i + 1] == '.' && s[i + 2] == '*') )

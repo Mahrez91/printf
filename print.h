@@ -44,6 +44,7 @@ int				ft_flag_etoile_point_s(int etoile, int i,char *string);
 int		ft_ecriture_point_s(int i, int y, char *string, int len_int);
 int		ft_ecriture_largeur_s( int i, int y, char *string, int len_int);
 int		ft_ecriture_tiret_s(int i, int y, char *string);
+int		ft_print_for_s_tiret(int etoile,int etoile2, const char *s, int i, char *string);
 int				ft_print_for_s(int etoile, const char *s, int i, char *string);
 int				ft_flag_tiret_c(int i, const char *s,int character);
 int				ft_flag_largeur_c(int i, const char *s,int character);
